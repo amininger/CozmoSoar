@@ -59,7 +59,6 @@ class RobotInfo(WMInterface):
         yaw = self.robot_data.pose.rotation.angle_z.radians
         pos = self.robot_data.pose.position
         robot_pose = [ pos.x/1000.0, pos.y/1000.0, pos.z/1000.0, 0.0, 0.0, yaw ]
-        localizer.update_robot_pose(robot_pose)
         self.pose = localizer.get_world_pose(robot_pose)
         for d, pose_wme in enumerate(self.pose_wmes):
             pose_wme.set_value(self.pose[d])

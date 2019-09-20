@@ -46,6 +46,10 @@ class CozmoSoar(psl.AgentConnector):
         self.robot = self.r = robot
         self.world = self.w = self.r.world
         self.localizer = CameraLocalizer()
+        self.localizer.start()
+        while not self.localizer.ready:
+            sleep(1)
+
         self.last_cam_update = 0
 
         self.cam = self.r.camera
@@ -437,8 +441,8 @@ class CozmoSoar(psl.AgentConnector):
         relative = (relative != None and relative.lower() == "true")
 
         if not relative:
-            world_pose = self.localizer.get_world_pose([x, y, 0.0, 0.0, 0.0, orient])
-            pose = cozmo.util.pose_z_angle(x=world_pose[0]*1000, y=world_pose[1]*1000, z=0.0, angle_z=radians(world_pose[5]))
+            cozmo_pose = self.localizer.get_cozmo_pose([x, y, 0.0, 0.0, 0.0, orient])
+            pose = cozmo.util.pose_z_angle(x=cozmo_pose[0]*1000, y=cozmo_pose[1]*1000, z=0.0, angle_z=radians(cozmo_pose[5]))
 
         print("Going to ({}, {}) with orientation {}, relative={}".format(x, y, orient, relative))
         go_to_pose_action = self.robot.go_to_pose(pose, relative_to_robot=relative, in_parallel=True)
@@ -544,9 +548,9 @@ class CozmoSoar(psl.AgentConnector):
         absolute = command.GetChildString("absolute")
         absolute = (absolute == "true" or absolute == "True")
         if absolute:
-            angle = self.localizer.get_world_pose([0.0, 0.0, 0.0, 0.0, 0.0, angle])[5]
+            angle = self.localizer.get_cozmo_pose([0.0, 0.0, 0.0, 0.0, 0.0, angle])[5]
 
-        print("Rotating in place {} degrees at {}deg/s".format(angle, speed))
+        print("Rotating in place {} rad at {}deg/s".format(angle, speed))
         turn_in_place_action = self.r.turn_in_place(angle=radians(angle), speed=radians(speed), is_absolute=absolute, in_parallel=True)
         status_wme = psl.SoarWME("status", "running")
         status_wme.add_to_wm(command)
@@ -676,11 +680,11 @@ class CozmoSoar(psl.AgentConnector):
         # UPDATE ROBOT INFORMATION 
         #####################################################
 
-        if current_time_ms() - self.last_cam_update > LOCALIZER_UPDATE_PERIOD:
-            yaw = self.robot.pose.rotation.angle_z.radians
-            pos = self.robot.pose.position
-            self.localizer.recalculate_transform([ pos.x/1000.0, pos.y/1000.0, pos.z/1000.0, 0.0, 0.0, yaw ])
-            self.last_cam_update = current_time_ms()
+        #if current_time_ms() - self.last_cam_update > LOCALIZER_UPDATE_PERIOD:
+        yaw = self.robot.pose.rotation.angle_z.radians
+        pos = self.robot.pose.position
+        self.localizer.recalculate_transform([ pos.x/1000.0, pos.y/1000.0, pos.z/1000.0, 0.0, 0.0, yaw ])
+        self.last_cam_update = current_time_ms()
 
         self.robot_info.update(self.r, self.localizer)
         self.robot_info.update_wm(input_link)
