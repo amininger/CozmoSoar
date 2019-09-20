@@ -1,0 +1,10 @@
+source propose-op_pick-up.soar
+source action-models.soar
+
+source elaborations.soar
+source preferences.soar
+
+source send-pick-up-command.soar
+source simulate-pick-up-command.soar
+
+source handle-failures.soar

@@ -1,0 +1,392 @@
+# complete-pop-task-segment - takes care of thing that needs to be done when popping the action
+
+sp {problem-space*action*pop-task-segment*propose*complete-pop-task-segment
+   (state <s> ^name pop-task-segment)
+-->
+   (<s> ^operator <o> + <)
+   (<o> ^name complete-pop-task-segment)
+}
+
+# Remove the task from the top of the stack
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*pop
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^task-stack <stack>
+              ^segment-to-pop <segment>)
+   (<stack> ^top <segment>)
+   (<segment> ^prev <prev>)
+   (<prev> ^next <segment>)
+-->
+   (<stack> ^top <segment> -
+            ^top <prev>)
+   (<prev> ^next <segment> -
+           ^next none)
+}
+
+# If the task was the bottom, change it to none
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*change*bottom
+  (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^task-stack <stack>
+              ^segment-to-pop <segment>)
+   (<stack> ^bottom <segment>
+            ^top <segment>)
+-->
+   (<stack> ^bottom <segment> -
+           ^bottom none
+           ^top <segment> -
+           ^top none)
+}
+
+sp {pop-task-segment*elaborate*world-vis
+   (state <s> ^name pop-task-segment
+               ^operator.name complete-pop-task-segment
+              ^operator <o>
+              ^top-state.dialog-context
+              ^top-state.world.objects <objs>
+             -^agent-params.prevent-output-link true
+             -^top-state.world.predicates.predicate.handle on1
+              ^top-state.io.output-link <ol>)
+-->
+   (<ol> ^world-vis <wv>)
+   (<wv> ^objects <objs>)
+}
+
+sp {pop-task-segment*elaborate*world-vis*with*on1
+   (state <s> ^name pop-task-segment
+               ^operator.name complete-pop-task-segment
+              ^operator <o>
+              ^top-state.dialog-context
+             -^agent-params.prevent-output-link true
+              ^top-state.world <w>
+              ^top-state.io.output-link <ol>)
+   (<w> ^objects <objs> ^predicates.predicate <pp>)
+   (<pp> ^handle on1)
+-->
+   (<ol> ^world-vis <wv>)
+   (<wv> ^objects <objs> ^predicate <pp>)
+}  
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*pop*segment
+   (state <s> ^name pop-task-segment
+               ^operator.name complete-pop-task-segment
+               ^top-state.interaction.stack.segment.purpose <p>
+               ^segment-to-pop.task-operator <op>
+               ^top-state.interaction.changes <chgs>)
+  (<p> ^type execute-task
+       ^parameters.task-operator <op>)
+-->
+  (<chgs> ^terminate-segment true)
+}
+
+# Remove any commands from the output-link
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*output*commands
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop.<cmd-name> <cmd>
+              ^io.output-link <ol>)
+   (<ol> ^<ol-cmd> <cmd>)
+-->
+   (<ol> ^<ol-cmd> <cmd> -)
+}
+
+# Report to the output link that the task was completed
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*report-to-output-link
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^agent-params.report-tasks-to-output-link true
+              ^segment-to-pop <seg>
+              ^top-state.io.output-link <ol>)
+   (<seg> ^status success
+          ^depth <d>)
+-->
+   (<ol> ^completed-task.segment <seg>)
+   (<seg> ^depth <d>)
+}
+
+
+# Report an action-event as having been performed if the task was successful
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*report*performed*action-event
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <segment>
+              ^top-state.interaction <interaction>)
+   (<segment> ^status success
+             ^task-operator.task-handle <task-handle>)
+   (<interaction> ^stack.segment.purpose.satisfaction.action-event.type <task-handle>
+                  ^status <status>)
+-->
+   (<status> ^performed.action-event.type <task-handle>)
+}
+
+#sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*report*find-success
+#   (state <s> ^name pop-task-segment
+#              ^operator.name complete-pop-task-segment
+#              ^segment-to-pop <segment>
+#              ^top-state.interaction.changes <chgs>)
+#   (<segment> ^status success
+#             ^task-operator.task-handle find1)
+#-->
+#   (<chgs> ^outgoing-message <msg>)
+#   (<msg> ^type find-success
+#          ^complete-message true)
+#}
+
+# Command Status
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*report*result
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^top-state.interaction.changes <chgs>)
+   (<seg> ^status <status>
+          ^prev none)
+-->
+   (<chgs> ^outgoing-message <msg>)
+   (<msg> ^type single-word-message
+          ^fields.word <status>)
+}
+
+
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*failure*mark*subtask-failed
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^superstate.parent-segment <par>)
+   (<seg> ^status failure
+          ^task-operator <task-op>)
+-->
+   (<par> ^subtask-failed <task-op>)
+}
+
+# If there is a policy-learning-needed flag, 
+#   push a retrospective learning segment onto the interaction stack
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*push*learning*segment
+   (state <s> ^name pop-task-segment
+              ### ABORT - check for status abort
+              ^operator.name complete-pop-task-segment
+			 #-^top-state.dialog-context #JK for now dont retrospective learning, so that epmem can be turned off
+              ^segment-to-pop <segment>
+              ^top-state.interaction.changes <changes>)
+   (<segment> ^policy-learning-needed true
+             ^status success
+             ^task-operator.task-handle <> find1)
+-->
+   (<changes> ^new-segment-info <info>)
+   (<info> ^purpose <p>
+           ^originator agent)
+   (<p> ^type retrospective-learning
+        ^parameters <params>
+        ^satisfaction.learning-event.type retrospective)
+   (<params> ^task-segment <segment>)
+}
+
+# Remove anything remembered during the action
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*remembered*things
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop.remembered <rem>)
+   (<rem> ^object.predicates <preds>
+          ^attribute <att>
+          ^value <val>)
+   (<preds> ^<att> <val>)
+-->
+   (<preds> ^<att> <val> -)
+}
+
+# Remove answers during the action
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*answers
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^superstate.world.objects <objs>
+              ^segment-to-pop <bottom>
+              ^task-stack.bottom <bottom>)
+  (<objs> ^object <obj>)
+  (<obj> ^predicates <preds>)
+  (<preds> ^modifier1 answer1)
+-->
+  (<preds> ^modifier1 answer1 -)
+}
+
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*answer*objects
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^top-state.world.objects.object <obj>
+              ^segment-to-pop <bottom>
+              ^task-stack.bottom <bottom>
+              ^top-state.perception-monitor.object-monitor.object-info <obj-info>)
+   (<obj> ^predicates.category answer)
+   (<obj-info> ^wm-obj <obj>)
+-->
+   (<obj-info> ^delete-object true)
+}
+   
+# Clear robot-status
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*robot-status
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^superstate.world.objects.object.predicates <preds>
+              ^segment-to-pop <bottom>
+              ^task-stack.bottom <bottom>)
+  (<preds> ^robot-status <status>)
+-->
+  (<preds> ^robot-status <status> -)
+}
+   
+   
+## Remove any objects added to the world during the action
+#sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*added*objects
+#   (state <s> ^name pop-task-segment
+#              ^operator.name complete-pop-task-segment
+#              ^segment-to-pop.added <obj>
+#              ^superstate.world.objects <objs>)
+#   (<objs> ^object <obj>)
+#-->
+#   (<objs> ^object <obj> -)
+#}
+#
+## Remove any predicates related to that added object
+#sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*remove*added*predicates
+#   (state <s> ^name pop-task-segment
+#              ^operator.name complete-pop-task-segment
+#              ^segment-to-pop.added <obj>
+#              ^superstate.world.predicates.predicate <pred>)
+#   (<pred> ^instance <i>)
+#   (<i> ^<any> <obj>)
+#-->
+#   (<pred> ^instance <i> -)
+#}
+
+#   mark it performed in the current action
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*mark*performed*once*subtask
+   (state <s> ^name pop-task-segment
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop.task-operator <op>
+              ^segment-to-pop.prev.task-operator <parent-op>)
+   (<op> ^subtask-handle { <sub-handle> <> none })
+-->
+   (<parent-op> ^performed <sub-handle>)
+}
+
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*bottom*clear*task-objects
+  (state <s> ^name pop-task-segment
+             ^operator.name complete-pop-task-segment
+             ^segment-to-pop <segment>
+             ^task-stack.bottom <segment>
+             ^task-stack <stack>)
+  (<stack> ^task-objects <objs>)
+-->
+  (<stack> ^task-objects <objs> -
+           ^task-objects <new>)
+}
+
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*delete*non-confirmed*task*object
+  (state <s> ^name pop-task-segment
+             ^operator.name complete-pop-task-segment
+             ^segment-to-pop <segment>
+             ^task-stack.bottom <segment>
+             ^task-stack.task-objects.object <obj>
+             ^top-state.perception-monitor.object-monitor.object-info <obj-info>)
+   (<obj> -^predicates.is-confirmed1 confirmed1
+          -^predicates.arm-status grabbed)
+   (<obj-info> ^wm-obj <obj>)
+-->
+   (<obj-info> ^delete-object true)
+}
+
+sp {problem-space*action*pop-task-segment*apply*complete-pop-task-segment*delete*dialog*info
+  (state <s> ^name pop-task-segment
+             ^operator.name complete-pop-task-segment
+             ^segment-to-pop <bottom>
+             ^task-stack.bottom <bottom>
+             ^top-state <top>)
+  (<top> ^dialog-object-list <list>
+         ^dialog-world <w>)
+-->
+  (<top> ^dialog-object-list <list> -
+         ^dialog-world <w> -
+         ^dialog-object-list nil
+         ^dialog-object-list-saved nil
+         ^dialog-world <new>)
+  (<new> ^objects <objs> ^predicates <preds>)
+}
+
+
+sp {task-utils*pop-task-segment*apply*complete-pop-task-segment*print*task*1*obj
+   (state <s> ^name pop-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>
+          ^status <status>)
+   (<task-op> ^name <op-name>
+           ^<arg1-name> <arg1>
+          -^{ <arg2-name> <> <arg1-name> }.arg-type <t2>)
+   (<arg1> ^arg-type object ^id.handle <obj>)
+-->
+   (write (crlf) |!COMPLETED-TASK! | <op-name> | | <obj> | | <status> | @| <time> (crlf))
+}
+
+sp {task-utils*pop-task-segment*apply*complete-pop-task-segment*print*task*1*pred
+   (state <s> ^name pop-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>
+          ^status <status>)
+   (<task-op> ^name <op-name>
+           ^<arg1-name> <arg1>
+          -^{ <arg2-name> <> <arg1-name> }.arg-type <t2>)
+   (<arg1> ^arg-type partial-predicate ^{2}.handle <obj>)
+-->
+   (write (crlf) |!COMPLETED-TASK! | <op-name> | | <obj> | | <status> | @| <time>(crlf))
+}
+
+sp {task-utils*pop-task-segment*apply*complete-pop-task-segment*print*task*1*obj*1*pred
+   (state <s> ^name pop-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>
+          ^status <status>)
+   (<task-op> ^name <op-name>
+           ^<arg1-name> <arg1>
+           ^<arg2-name> <arg2>)
+   (<arg1> ^arg-type object ^id.handle <obj1>)
+   (<arg2> ^arg-type partial-predicate ^{2}.handle <obj2>)
+-->
+   (write (crlf) |!COMPLETED-TASK! | <op-name> | | <obj1> | | <obj2> | | <status> | @| <time>(crlf))
+}
+
+sp {task-utils*pop-task-segment*apply*complete-pop-task-segment*print*task*0*arg
+   (state <s> ^name pop-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>
+          ^status <status>)
+   (<task-op> ^name <op-name>
+             -^arg1 -^arg2)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | | <status> | @| <time> (crlf))
+}
+        
+sp {task-utils*pop-task-segment*apply*complete-pop-task-segment*print*task*1*arg*coord
+   (state <s> ^name pop-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-pop-task-segment
+              ^segment-to-pop <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>
+          ^status <status>)
+   (<task-op> ^name <op-name>
+              ^arg1 <arg1>)
+   (<arg1> ^arg-type coordinate
+           ^coord <c>)
+   (<c> ^x <x> ^y <y>)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | (| <x> |, | <y> |) | <status> | @| <time> (crlf))
+}
+        

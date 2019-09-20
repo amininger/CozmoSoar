@@ -1,0 +1,55 @@
+C:\Users\tonyp\Documents\rosie\CozmoSoar>py test_localizer.py
+2019-08-01 17:15:29,701 cozmo.general INFO     App connection established. sdk_version=1.4.10 cozmoclad_version=3.4.0 app_build_version=00003.00004.00000
+2019-08-01 17:15:29,701 cozmo.general INFO     Found robot id=1
+2019-08-01 17:15:29,701 cozmo.general INFO     Connected to Android device serial=88DX00U8S
+2019-08-01 17:15:29,826 cozmo.general INFO     Robot id=1 serial=45a237cd initialized OK
+camera initialized
+cube in camera position (actual):  [ 0.13681568 -0.02030407  0.00471103 -0.20459217  0.19349713 -1.50233868]
+Cube in camera position (calculated):  [0.10921411972929068, -0.03044644979533313, 0, 0, 0, -1.518459733995078]
+Cube in Cozmo coordinates (actual) [0.24841606140136718, -0.03178487968444824, -0.0638851776123047, 0, 0, -1.5758580344859032]
+Cube in Cozmo Coordinates (calculated) [0.2765540065397255, -0.023242611930441002, 0, 0, 0, -1.559736984787354]
+---------------------------------------------------------------
+2019-08-01 17:15:54,294 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+2019-08-01 17:15:55,146 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+cube in camera position (actual):  [ 0.13453189 -0.03125461 -0.02371922  5.69410094  0.07597774 -1.53675262]
+Cube in camera position (calculated):  [0.10619884133368332, -0.03288705425118858, 0, 0, 0, -1.525185274880342]
+Cube in Cozmo coordinates (actual) [0.19887864685058593, 0.01693476104736328, -0.04720580291748047, 0, 0, -2.0539432659867405]
+Cube in Cozmo Coordinates (calculated) [0.22416588114001282, 0.004051342397219118, 0, 0, 0, -2.0655106139525223]
+---------------------------------------------------------------
+2019-08-01 17:15:59,520 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+2019-08-01 17:15:59,704 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+cube in camera position (actual):  [ 0.13593622 -0.03075297 -0.01379711  0.2596691  -0.17225424 -1.55401521]
+Cube in camera position (calculated):  [0.1291020504480921, -0.05862123988075843, 0, 0, 0, -1.529722400282965]
+Cube in Cozmo coordinates (actual) [0.09308067321777344, 0.09521739959716796, -0.025897422790527345, 0, 0, -2.3145197763318874]
+Cube in Cozmo Coordinates (calculated) [0.11761006736139891, 0.1101054952216169, 0, 0, 0, -2.3388125854835744]
+---------------------------------------------------------------
+2019-08-01 17:16:04,197 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+2019-08-01 17:16:04,446 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+cube in camera position (actual):  [-1.47305452e-03 -9.02414144e-02 -5.08706023e-02  5.87991158e+00
+ -2.20108921e-01 -9.98193384e-01]
+Cube in camera position (calculated):  [0.007934501090547955, -0.11859485995788123, 0, 0, 0, -0.9747166885722782]
+Cube in Cozmo coordinates (actual) [0.1048507308959961, 0.029950342178344726, -0.017162548065185548, 0, 0, -3.077074515606021]
+Cube in Cozmo Coordinates (calculated) [0.13406037422953224, 0.023688017113382462, 0, 0, 0, -3.1005512114040474]
+---------------------------------------------------------------
+cube in camera position (actual):  [-0.07527527 -0.06353669 -0.05585868 -6.06734709 -0.32163856 -0.01411285]
+Cube in camera position (calculated):  [-0.052797020187855495, -0.09033909350981298, 0, 0, 0, 0.06588571695996848]
+Cube in Cozmo coordinates (actual) [0.09595046234130859, 0.1458045196533203, -0.039536476135253906, 0, 0, -2.0253279046600716]
+Cube in Cozmo Coordinates (calculated) [0.13038167882650453, 0.15197963158613195, 0, 0, 0, -2.1053264703827175]
+---------------------------------------------------------------
+2019-08-01 17:16:13,747 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+2019-08-01 17:16:13,916 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+cube in camera position (actual):  [-0.02545572 -0.18946405 -0.00775959  6.08605274 -0.11264509  0.72395431]
+Cube in camera position (calculated):  [0.021772076872633855, -0.19341520045119107, 0, 0, 0, 0.7764957468309195]
+Cube in Cozmo coordinates (actual) [0.16882913208007813, 0.04064809799194336, -0.03894303131103516, 0, 0, -3.007556896269871]
+Cube in Cozmo Coordinates (calculated) [0.20427345229934657, 0.00918738108372004, 0, 0, 0, -3.0600983288308687]
+---------------------------------------------------------------
+2019-08-01 17:16:19,327 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+2019-08-01 17:16:19,494 cozmo.general INFO     Robot delocalized - invalidating poses for all objects
+cube in camera position (actual):  [ 0.10364611 -0.16317598  0.00874817 -6.09489946  0.22906137  1.50718766]
+Cube in camera position (calculated):  [0.12952253829443958, -0.1439530918984068, 0, 0, 0, 1.6635034626684009]
+Cube in Cozmo coordinates (actual) [0.12779685974121094, 0.03941032409667969, -0.026030735015869142, 0, 0, -2.753569008504192]
+Cube in Cozmo Coordinates (calculated) [0.15371873575803874, 0.020248763677229453, 0, 0, 0, -2.909884814394373]
+---------------------------------------------------------------
+2019-08-01 17:16:26,488 cozmo.general INFO     Exit requested by user
+2019-08-01 17:16:26,488 cozmo.general INFO     Shutting down connection
+2019-08-01 17:16:26,488 cozmo.general INFO     Android serial=88DX00U8S disconnected.

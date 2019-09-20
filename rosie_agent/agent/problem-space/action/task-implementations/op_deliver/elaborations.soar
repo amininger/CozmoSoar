@@ -1,0 +1,70 @@
+
+sp {op_deliver1*elaborate*corner-location
+   (state <s> ^name op_deliver1
+              ^task-operator.arg2 <arg2>)
+   (<arg2> ^arg-type partial-predicate
+           ^2 <corner>)
+   (<corner> ^predicates.spatial-shape corner1)
+-->
+   (<s> ^corner-location <corner>)
+}
+
+sp {op_deliver1*elaborate*target-object
+   (state <s> ^name op_deliver1
+              ^task-operator.arg1.id <obj>)
+-->
+   (<s> ^target-object <obj>)
+}
+
+sp {op_deliver1*elaborate*desired
+   (state <s> ^name op_deliver1
+              ^target-object.predicates.arm-status not-grabbed
+              ^current-task-segment.completed-approach true)
+-->
+   (<s> ^desired.satisfied true)
+}
+
+sp {op_deliver1*apply*pop-task-segment*find*failure*report*failure
+   (state <s> ^name op_deliver1
+              ^operator <o>
+              ^current-task-segment <seg>)
+   (<o> ^name pop-task-segment
+        ^segment <find-seg>)
+   (<find-seg> ^task-handle find1
+               ^status failure)
+-->
+   (<seg> ^find-block-failed true)
+}
+
+sp {op_deliver1*propose*report-deliver-failure
+   (state <s> ^name op_deliver1
+              ^current-task-segment <seg>
+              ^target-object.predicates.is-visible1 not-visible1
+             -^child-task-segment)
+   (<seg> ^find-block-failed true)
+-->
+   (<s> ^operator <o> + > =)
+   (<o> ^name report-deliver-failure)
+}
+
+sp {op_deliver1*apply*report-deliver-failure
+   (state <s> ^name op_deliver1
+              ^operator.name report-deliver-failure
+              ^current-task-segment <seg>)
+-->
+   (<seg> ^status failure)
+}
+
+sp {op_deliver1*apply*pop-task-segment*completed-approach
+   (state <s> ^name op_deliver1
+              ^operator <o>
+              ^current-task-segment <seg>)
+   (<o> ^name pop-task-segment
+        ^segment <app-seg>)
+   (<app-seg> ^task-handle approach1)
+-->
+   (<seg> ^completed-approach true)
+}
+
+
+

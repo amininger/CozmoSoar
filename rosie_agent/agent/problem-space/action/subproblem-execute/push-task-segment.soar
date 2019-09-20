@@ -1,0 +1,10 @@
+sp {subproblem*execute*propose*push-task-segment*new-task-segment*on*state
+   (state <s> ^problem-space.subproblem execute
+              ^new-task-segment <seg>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name push-task-segment
+        ^segment <seg>)
+}
+
+

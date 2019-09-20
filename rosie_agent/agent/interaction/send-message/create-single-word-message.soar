@@ -1,0 +1,19 @@
+sp {send-message*propose*create-single-word-message
+   (state <s> ^name send-message
+              ^message.type single-word-message
+             -^created-message)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name create-single-word-message)
+}
+
+sp {send-message*apply*create-single-word-message*create*message
+   (state <s> ^name send-message
+              ^operator.name create-single-word-message
+              ^message.fields.word <word>)
+-->
+   (<s> ^created-message <msg>)
+   (<msg> ^type single-word-message
+          ^fields <f>)
+   (<f> ^word <word>)
+}

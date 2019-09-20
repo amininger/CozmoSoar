@@ -1,0 +1,91 @@
+sp {top-state*better-preferences*lookup-preposition
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name lookup-preposition)
+   (<o2> ^name << interaction handle-new-task-command satisfy-purpose action-learning execute-task push-task-segment attend-to-scene-change wait >>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {top-state*better-preferences*interaction
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name interaction)
+   (<o2> ^name << handle-new-task-command satisfy-purpose action-learning execute-task  push-task-segment attend-to-scene-change wait >>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+#sp {top-state*better-preferences*comprehension
+#   (state <s> ^operator <o1> +
+#              ^operator <o2> +)
+#   (<o1> ^name comprehension)
+#   (<o2> ^name << handle-new-task-command satisfy-purpose action-learning execute-task attend-to-scene-change wait >>)
+#-->
+#   (<s> ^operator <o1> > <o2>)
+#}
+
+sp {top-state*better-preferences*handle-new-task-command
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name handle-new-task-command)
+   (<o2> ^name << satisfy-purpose action-learning execute-task push-task-segment attend-to-scene-change wait >>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {top-state*better-preferences*satisfy-purpose
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name << satisfy-purpose execute-task push-task-segment action-learning >>)
+   (<o2> ^name << attend-to-scene-change wait >>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {top-state*better-preferences*execute-task
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name << execute-task push-task-segment >>)
+   (<o2> ^name satisfy-purpose)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {top-state*reject*push-task-segment*retrospective-learning
+   (state <s> ^superstate nil
+              ^operator <o1> +
+              ^interaction.stack.segment.purpose.type retrospective-learning)
+   (<o1> ^name push-task-segment)
+-->
+   (<s> ^operator <o1> -)
+}
+
+sp {top-state*better-preferences*attend-to-scene-change
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name attend-to-scene-change)
+   (<o2> ^name << wait >>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {top-state*better-preferences*init-agent
+   (state <s> ^superstate nil
+   		  	  ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name init-agent)
+   (<o2> -^name init-agent)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {top-state*prefer*attend-to-scene-change*over*process-new-sentence
+   (state <s> ^superstate nil
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name attend-to-scene-change)
+   (<o2> ^name process-new-sentence)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

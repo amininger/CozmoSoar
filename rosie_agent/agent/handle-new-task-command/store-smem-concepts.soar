@@ -1,0 +1,40 @@
+# If any ^to-store <lti> wmes exist, store them in smem
+
+# elaborate ^concepts-to-store true flag if any ^to-store <lti> exist
+sp {handle-new-task-command*elaborate*concepts-to-store
+   (state <s> ^name handle-new-task-command
+              ^to-store <lti>)
+-->
+   (<s> ^concepts-to-store true)
+}
+
+# propose store-smem-concepts if ^concepts-to-store true is present
+sp {handle-new-task-command*propose*store-smem-concepts
+   (state <s> ^name handle-new-task-command
+              ^concepts-to-store true)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name store-smem-concepts)
+}
+
+# create store command on smem.command link and remove ^to-store wmes
+sp {handle-new-task-command*apply*store-smem-concepts*store
+   (state <s> ^name handle-new-task-command
+              ^operator.name store-smem-concepts
+              ^smem.command <cmd>
+              ^to-store <lti>)
+-->
+   (<cmd> ^store <lti>)
+   (<s> ^to-store <lti> -)
+}
+
+# if a retrieve command is there, remove it so the stores can work
+sp {handle-new-task-command*apply*store-smem-concepts*remove*retrieve
+   (state <s> ^name handle-new-task-command
+              ^operator.name store-smem-concepts
+              ^smem.command <cmd>)
+   (<cmd> ^retrieve <ret>)
+-->
+   (<cmd> ^retrieve <ret> -)
+}
+              

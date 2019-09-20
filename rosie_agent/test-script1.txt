@@ -1,0 +1,36 @@
+#start red box southwest2
+#start green box northwest2
+#start blue box southeast2
+#start orange box northwest1
+#start yellow box southwest1
+#start purple box northeast2
+Deliver the red box to the northeast1 corner.
+Find the yellow box.
+#relocate red box to southwest2
+Deliver the green box to the southeast1 corner.
+Find the orange box.
+#relocate red box to northeast1
+Deliver the blue box to the northwest2 corner.
+Find the orange box.
+#relocate red box to southwest2
+Deliver the red box to the northeast1 corner.
+Find the purple box.
+#relocate yellow box to southwest2
+Deliver the red box to the southeast2 corner.
+Find the purple box.
+#relocate red box to southwest1
+Deliver the red box to the southeast2 corner.
+Find the yellow box.
+#relocate purple box to southwest1
+Deliver the red box to the northeast2 corner.
+Find the orange box.
+#relocate yellow box to southeast2
+Deliver the blue box to the northeast1 corner.
+Find the orange box.
+#relocate red box to northwest2
+Deliver the red box to the southwest2 corner.
+Find the orange box.
+#relocate red box to northeast2
+Deliver the blue box to the northwest2 corner.
+Find the orange box.
+#relocate green box to northeast1

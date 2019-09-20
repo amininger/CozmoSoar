@@ -1,0 +1,67 @@
+# H-layout objects
+smem --add {
+	# Northern room
+	(<north> ^handle loc-north1 ^object-instance true ^item-type object ^waypoint wp01 
+		^category location ^name northern1 ^spatial-shape room1 ^child-location <northwest1> <northeast1> <southeast1> <southwest1>)
+
+	# Southern room
+	(<south> ^handle loc-south1 ^object-instance true ^item-type object ^waypoint wp02
+        ^category location ^name southern1 ^spatial-shape room1 ^child-location <northwest2> <northeast2> <southeast2> <southwest2>)
+
+	# Hallway
+	(<hall> ^handle loc-hall1 ^object-instance true ^item-type object ^waypoint wp03
+		^category location ^spatial-shape hall1)
+
+	# Northern Room Corners
+	(<northwest1> ^handle loc-northwest1 ^object-instance true ^item-type object ^parent-location <north> ^x -1.00 ^y 0.75
+		^category location ^name northwest1 ^spatial-shape corner1)
+	(<northeast1> ^handle loc-northeast1 ^object-instance true ^item-type object ^parent-location <north> ^x 1.00 ^y 0.75 
+		^category location ^name northeast1 ^spatial-shape corner1)
+	(<southeast1> ^handle loc-southeast1 ^object-instance true ^item-type object ^parent-location <north> ^x 1.00 ^y -0.75 
+		^category location ^name southeast1 ^spatial-shape corner1)
+	(<southwest1> ^handle loc-southwest1 ^object-instance true ^item-type object ^parent-location <north> ^x -1.00 ^y -0.75 
+		^category location ^name southwest1 ^spatial-shape corner1)
+
+	(<northwest2> ^handle loc-northwest2 ^object-instance true ^item-type object ^parent-location <south> ^x -1.00 ^y -3.55
+		^category location ^name northwest2 ^spatial-shape corner1)
+	(<northeast2> ^handle loc-northeast2 ^object-instance true ^item-type object ^parent-location <south> ^x 1.00 ^y -3.55 
+		^category location ^name northeast2 ^spatial-shape corner1)
+	(<southeast2> ^handle loc-southeast2 ^object-instance true ^item-type object ^parent-location <south> ^x 1.00 ^y -5.08 
+		^category location ^name southeast2 ^spatial-shape corner1)
+	(<southwest2> ^handle loc-southwest2 ^object-instance true ^item-type object ^parent-location <south> ^x -1.00 ^y -5.08 
+		^category location ^name southwest2 ^spatial-shape corner1)
+
+}
+
+## RELATIONS USED IN MOBILE DOMAIN FOR EVALUATION
+smem --add {
+(@100428 ^relation <501000x> <501000y> <501000z> )
+   (<501000x> ^avg 0.0 ^axis x ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501000y> ^avg 0.0 ^axis y ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501000z> ^avg 0.005 ^axis z ^bottom 0.00001 ^count 3 ^squaredsum 0.0 ^sum 0.0 ^top 0.5 ^type greater )
+
+(@100429 ^relation <501001x> <501001y> <501001z> )
+   (<501001x> ^avg 0.0 ^axis x ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501001y> ^avg 0.0 ^axis y ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501001z> ^avg 0.0 ^axis z ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+
+(@100430 ^relation <501002x> <501002y> <501002z>)
+   (<501002x> ^avg 0.0 ^axis x ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501002y> ^avg 0.8 ^axis y ^bottom 0.0001 ^count 1 ^squaredsum 0.64 ^sum 0.8 ^top 4.0 ^type less )
+   (<501002z> ^avg 0.0 ^axis z ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   
+(@100431 ^relation <501003x> <501003y> <501003z>)
+   (<501003x> ^avg 0.0 ^axis x ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501003y> ^avg 0.8 ^axis y ^bottom 0.0001 ^count 1 ^squaredsum 0.64 ^sum 0.8 ^top 4.0 ^type greater )
+   (<501003z> ^avg 0.0 ^axis z ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+
+(@100432 ^relation <501014x> <501014y> <501014z>)
+   (<501014x> ^avg 0.8 ^axis x ^bottom 0.0001 ^count 1 ^squaredsum 0.64 ^sum 0.8 ^top 4.0 ^type greater )
+   (<501014y> ^avg 0.0 ^axis y ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501014z> ^avg 0.0 ^axis z ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   
+(@100433 ^relation <501016x> <501016y> <501016z>)
+   (<501016x> ^avg 0.8 ^axis x ^bottom 0.0001 ^count 1 ^squaredsum 0.64 ^sum 0.1 ^top 4.0 ^type less )
+   (<501016y> ^avg 0.0 ^axis y ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+   (<501016z> ^avg 0.0 ^axis z ^bottom 0.0 ^count 0 ^squaredsum 0.0 ^sum 0.0 ^top 0.0 ^type aligned )
+}

@@ -1,0 +1,233 @@
+# Different categories
+smem --add {
+   (@property ^handle property ^type visual)
+
+   (@color ^handle color ^type visual ^item-type property ^property @numeric)
+
+   (@shape ^handle shape ^type visual ^item-type property ^property @concept)
+
+   (@size ^handle size ^type visual ^item-type property ^property @numeric)
+
+   (@name ^handle name ^type visual ^item-type property)
+
+   (@weight ^handle weight ^type measurable ^item-type property ^property @concept)
+
+   (@temperature ^handle temperature ^type measurable ^item-type property ^property @concept)
+
+   (@spatial-shape ^handle spatial-shape ^type visual ^item-type property)
+
+   (@category ^handle category ^type visual ^item-type property)
+
+   (@subcategory ^handle subcategory ^type visual ^item-type property)
+
+   (@possessive ^handle possessive ^item-type property)
+
+   (@modifier1 ^handle modifier1 ^type visual ^item-type property)
+
+   (@concept ^handle concept ^type conceptual)
+   
+   (@numeric ^handle numeric ^type conceptual)
+
+   (@cardinal-direction1 ^handle cardinal-direction1 ^item-type property)
+
+   (@relative-direction1 ^handle relative-direction1 ^item-type property)
+
+   (@unit ^handle unit ^type unit ^item-type property)
+
+   (@container1 ^handle container1 ^type visual ^item-type property)
+
+   (@is-visible1 ^handle is-visible1 ^type visual ^item-type property)
+
+   (@is-reachable1 ^handle is-reachable1 ^type visual ^item-type property)
+
+   (@is-grabbable1 ^handle is-grabbable1 ^type visual ^item-type property)
+
+   (@is-confirmed1 ^handle is-confirmed1 ^type visual ^item-type property)
+
+   (@is-following1 ^handle is-following1 ^type visual ^item-type property)
+
+}
+
+# Misc Concepts
+smem --add {
+   # Visibility
+   (@visible1 ^handle visible1 ^property @is-visible1)
+   (@not-visible1 ^handle not-visible1 ^property @is-visible1)
+   (@unknown-visible1 ^handle unknown-visible1 ^property @is-visible1)
+
+   # Reachable
+   (@reachable1 ^handle reachable1 ^property @is-reachable1)
+   (@not-reachable1 ^handle not-reachable1 ^property @is-reachable1)
+
+   # Grabbable
+   (@grabbable1 ^handle grabbable1 ^property @is-grabbable1)
+   (@not-grabbable1 ^handle not-grabbable1 ^property @is-grabbable1)
+
+   # Confirmed
+   (@confirmed1 ^handle confirmed1 ^property @is-confirmed1)
+   (@not-confirmed1 ^handle not-confirmed1 ^property @is-confirmed1)
+
+   # Following
+   (@following1 ^handle following1 ^property @is-following1)
+   (@not-following1 ^handle not-following1 ^property @is-following1)
+
+   # Rosie
+   (@rosie ^handle rosie)
+
+   
+   (@task-completed ^handle task-completed ^property @concept ^item-type predicate)
+   (@won ^handle won ^property @concept ^item-type predicate)
+   (@lost ^handle lost ^property @concept ^item-type predicate)
+   (@clear ^handle clear ^property @property)
+   (@available ^handle available ^property @property)
+   (@access ^handle accessible ^property @property)
+   (@yours ^handle yours ^property @property)
+   (@diagonal ^handle diagonal ^property @property)
+   (@filled ^handle filled ^property @property)
+   (@grouped ^handle grouped ^property @property)
+   (@free ^handle free ^property @property)
+   (@absent ^handle absent ^property @property)
+   (@full ^handle full1 ^property @container1)
+   (@enemy ^handle enemy ^property @property)
+   (@linear ^handle linear ^property @property)
+   (@center ^handle center ^property @property)
+   #(@corner ^handle corner ^property @property)
+   (@edge ^handle edge ^property @property)
+   (@covered ^handle covered ^property @property)
+   (@moved ^handle moved ^property @property)
+   (@placed ^handle placed ^property @property)
+   (@trashed ^handle trashed ^property @property)
+   (@captured ^handle captured ^property @property)
+   (@occupied ^handle occupied ^property @property)
+   (@matched ^handle matched ^property @property)
+   (@matching ^handle matching ^property @property)
+   (@identical ^handle identical ^property @property)
+   (@usual ^handle usual ^property @property)
+   (@other ^handle other ^property @property)
+   (@initial ^handle initial ^property @property)
+   (@final ^handle final ^property @property)
+   (@last ^handle last ^property @property)
+   (@opposite ^handle opposite ^property @property)
+   (@current ^handle current ^property @property)
+   (@your ^handle your ^property @property)
+   (@empty ^handle empty1 ^property @property)
+   #(@empty ^handle empty1 ^property @container1) #JK
+
+   (@strong ^handle strong ^property @property)
+   (@weak ^handle weak ^property @property)
+   (@heavy ^handle heavy ^property @property)
+   (@light ^handle light ^property @property)
+   (@low ^handle low ^property @property)
+   (@high ^handle high ^property @property)
+   (@top ^handle top ^property @property)
+   (@bottom ^handle bottom ^property @property)
+   (@dim ^handle dim ^property @property)
+   (@dark ^handle dark ^property @property)
+   (@bright ^handle bright ^property @property)
+   (@hard ^handle hard ^property @property)
+   (@soft ^handle soft ^property @property)
+   
+   (@largest ^handle largest ^property @property)
+   (@smallest ^handle smallest ^property @property)
+
+   (@strongest ^handle strongest ^property @property)
+   (@weakest ^handle weakest ^property @property)
+   (@heaviest ^handle heaviest ^property @property)
+   (@lightest ^handle lightest ^property @property)
+   (@lowest ^handle lowest ^property @property)
+   (@highest ^handle highest ^property @property)
+   (@dimmest ^handle dimmest ^property @property)
+   (@darkest ^handle darkest ^property @property)
+   (@brightest ^handle brightest ^property @property)
+   (@hardest ^handle hardest ^property @property)
+   (@softest ^handle softest ^property @property)
+   
+   (@peg ^handle peg ^property @property)
+   (@knight ^handle knight ^property @property)
+   (@person ^handle person ^property @property)
+   (@agent ^handle agent ^property @property)
+   (@actor ^handle actor ^property @property)
+   (@manager ^handle manager ^property @property)
+   (@piece ^handle piece ^property @property)
+   (@frog ^handle frog ^property @property)
+   (@toad ^handle toad ^property @property)
+   (@grape ^handle grape ^property @property)
+   (@grapefruit ^handle grapefruit ^property @property)
+   (@goose ^handle goose ^property @property)
+   (@bean ^handle bean ^property @property)
+   (@fox ^handle fox ^property @property)
+   (@passenger ^handle passenger ^property @property)
+   (@line ^handle line ^property @property)
+   (@group ^handle group ^property @property)
+   (@grouping ^handle grouping ^property @property)
+   (@rank ^handle rank ^property @property)
+   (@file ^handle file ^property @property)
+   
+   (@region ^handle region ^property @property)
+   (@stack ^handle stack ^property @property)
+   (@solutiond ^handle solution-depth ^property @property)
+   #(@column1 ^handle column1 ^property @property)
+   
+   (@owner ^handle owner ^property @concept)
+   (@partner ^handle partner ^property @concept)
+   (@age ^handle age ^property @numeric)
+   (@score ^handle score ^property @numeric)
+   (@husband ^handle husband ^property @concept)
+   (@wife ^handle wife ^property @concept)
+   (@position ^handle position ^property @numeric)
+   #(@aposition ^handle position ^property @concept)#TODO second version of position.. so can override with location under block
+   (@neighbor ^handle neighbor ^property @concept)
+   (@occupant ^handle occupant ^property @concept)
+   (@constraints ^handle constraints ^property @concept)
+   (@manager1 ^handle manager1 ^property @concept)
+   (@passenger1 ^handle passenger1 ^property @concept)
+   
+   (@same ^handle same ^property @property)
+  #(@closed ^handle closed ^property @property)
+   (@name1 ^handle name1 ^property @concept)
+   (@number1 ^handle number1 ^property @numeric ^function @count)
+   (@count ^type count ^function soar-count)
+   (@letter1 ^handle letter1 ^property @concept)
+   (@action ^handle action 
+            ^property @action2)
+   (@action2 ^handle action ^type action)
+   (@relation ^handle relation ^property @concept)
+   (@last-name ^handle last-name ^property @numeric)
+   (@volume ^handle volume ^property @numeric)
+   (@difference ^handle difference ^property @numeric ^function @diff)
+   (@diff ^type difference ^function soar-difference)
+   	
+   (@value ^handle value ^property @numeric)
+   (@values ^handle value ^property @numeric ^multiple true)
+   (@sum ^handle sum ^property @numeric ^function @soarsum)
+   (@soarsum ^type sum ^function soar-sum)
+   (@product ^handle product ^property @numeric ^function @prodfunc)
+   (@prodfunc ^type product ^function soar-product)
+   (@columns ^handle column ^property @numeric ^multiple true)
+   (@rows ^handle row ^property @numeric ^multiple true)
+   (@column ^handle column ^property @numeric)
+   (@row ^handle row ^property @numeric)
+   (@section ^handle section ^property @numeric)
+   #(@rank1 ^handle rank1 ^property @numeric)
+   (@suit ^handle suit ^property @numeric)
+	
+   (@solution1 ^handle solution1 ^property @category ^item-type object) 
+   (@location ^handle location ^property @category)
+   (@locations ^handle location ^property @category ^multiple true)
+   (@block ^handle block ^property @category)
+   (@blocks ^handle block ^property @category ^multiple true)
+   (@steps1 ^handle steps1 ^property @shape ^multiple true ^item-type object)
+   (@missionaries1 ^handle missionary1 ^property @shape ^multiple true)
+   (@cannibals1 ^handle cannibal1 ^property @shape ^multiple true)
+   (@lights1 ^handle lights1 ^property @shape ^item-type predicate)
+}
+
+# Additional info on templated words
+smem --add {
+   (@door1 ^output-word door)
+   (@intersection1 ^output-word intersection)
+
+   (@alices1 ^person-name alice1)
+   (@bobs1 ^person-name bob1)
+   (@charlies1 ^person-name charlie1)
+}

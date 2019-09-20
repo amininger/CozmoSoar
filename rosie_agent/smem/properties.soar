@@ -1,0 +1,101 @@
+## Cardinal Dirs ## 
+# +@cardinal-dirs
+smem --add {
+   (@100354 ^handle north1 ^property @100208 ^yaw 1.507 ^item-type concept)
+   (@100355 ^handle east1 ^property @100208 ^yaw 0.0 ^item-type concept)
+   (@100356 ^handle south1 ^property @100208 ^yaw -1.507 ^item-type concept)
+   (@100357 ^handle west1 ^property @100208 ^yaw 3.14 ^item-type concept)
+}
+
+## Units  ##
+smem --add {
+   (@100358 ^handle meters ^property @100210 ^item-type concept)
+   (@100359 ^handle feet ^property @100210 ^item-type concept)
+   (@100360 ^handle inches ^property @100210 ^item-type concept)
+   (@100361 ^handle centimeters ^property @100210 ^item-type concept)
+   (@100362 ^handle minutes ^property @100210 ^item-type concept)
+   (@100363 ^handle seconds ^property @100210 ^item-type concept)
+   (@100364 ^handle hours ^property @100210 ^item-type concept)
+}
+
+## Relative Directions ##
+smem --add {
+   (@100365 ^handle right1 ^property @100209 ^side -1 ^item-type concept ^yaw -1.57)
+   (@100366 ^handle left1 ^property @100209 ^side 1 ^item-type concept ^yaw 1.57)
+   (@100367 ^handle around1 ^property @100209 ^side -1 ^item-type concept ^yaw 3.14)
+   (@100368 ^handle forward1 ^property @100209 ^item-type concept)
+   (@100369 ^handle up1 ^property @100209 ^item-type concept)
+   (@100370 ^handle down1 ^property @100209 ^item-type concept)
+}
+
+## State Properties ##
+
+smem --add {
+   (@100371 ^handle activation1 ^type state ^item-type property)
+   (@100372 ^handle on2 ^property @100371 ^item-type concept)
+   (@100373 ^handle off2 ^property @100371 ^item-type concept)
+
+   (@100374 ^handle meat1 ^type state ^item-type property)
+   (@100375 ^handle cooked1 ^property @100374 ^item-type concept)
+   (@100376 ^handle raw1 ^property @100374 ^item-type concept)
+
+   (@100377 ^handle door2 ^type state ^item-type property)
+   (@100378 ^handle open2 ^property @100377 ^item-type concept)
+   (@100379 ^handle closed2 ^property @100377 ^item-type concept)
+
+   (@100380 ^handle action1 ^type state ^item-type property)
+   (@100381 ^handle last-moved1 ^property @100380 ^item-type predicate)
+}
+
+## Numbers ##
+smem --add {
+   (@100122 ^handle number ^type number ^item-type property)
+   (@100382 ^handle character ^type character ^item-type property)
+   (@100383 ^handle x ^property @100122 ^item-type predicate)
+   (@100384 ^handle o ^property @100122 ^item-type predicate)
+
+   (@100385 ^handle zeroth1 ^property @100122 ^item-type predicate)
+   (@100386 ^handle first1 ^property @100122 ^item-type predicate)
+   (@100387 ^handle second1 ^property @100122 ^item-type predicate)
+   (@100388 ^handle third1 ^property @100122 ^item-type predicate)
+   (@100389 ^handle fourth1 ^property @100122 ^item-type predicate)
+   (@100390 ^handle fifth1 ^property @100122 ^item-type predicate)
+   (@100391 ^handle sixth1 ^property @100122 ^item-type predicate)
+   (@100392 ^handle seventh1 ^property @100122 ^item-type predicate)
+   (@100393 ^handle eighth1 ^property @100122 ^item-type predicate)
+   (@100394 ^handle ninth1 ^property @100122 ^item-type predicate)
+
+   (@100395 ^handle 0 ^property @100122 ^item-type predicate)
+   (@100396 ^handle 1 ^property @100122 ^item-type predicate)
+   (@100397 ^handle 2 ^property @100122 ^item-type predicate)
+   (@100398 ^handle 3 ^property @100122 ^item-type predicate)
+   (@100399 ^handle 4 ^property @100122 ^item-type predicate)
+   (@100400 ^handle 5 ^property @100122 ^item-type predicate)
+   (@100401 ^handle 6 ^property @100122 ^item-type predicate)
+   (@100402 ^handle 7 ^property @100122 ^item-type predicate)
+   (@100403 ^handle 8 ^property @100122 ^item-type predicate)
+   (@100404 ^handle 9 ^property @100122 ^item-type predicate)
+   (@100405 ^handle 10 ^property @100122 ^item-type predicate)
+   (@100406 ^handle 11 ^property @100122 ^item-type predicate)
+   (@100407 ^handle 12 ^property @100122 ^item-type predicate)
+   (@100408 ^handle 13 ^property @100122 ^item-type predicate)
+   (@100409 ^handle 14 ^property @100122 ^item-type predicate)
+   (@100410 ^handle 15 ^property @100122 ^item-type predicate)
+   (@100411 ^handle 16 ^property @100122 ^item-type predicate)
+   (@100412 ^handle 17 ^property @100122 ^item-type predicate)
+   (@100413 ^handle 18 ^property @100122 ^item-type predicate)
+   (@100414 ^handle 19 ^property @100122 ^item-type predicate)
+   (@100415 ^handle 20 ^property @100122 ^item-type predicate)
+   (@100416 ^handle 21 ^property @100122 ^item-type predicate)
+   (@100417 ^handle 22 ^property @100122 ^item-type predicate)
+   (@100418 ^handle 23 ^property @100122 ^item-type predicate)
+   (@100419 ^handle 24 ^property @100122 ^item-type predicate)
+   (@100420 ^handle 25 ^property @100122 ^item-type predicate)
+   (@100421 ^handle 26 ^property @100122 ^item-type predicate)
+   (@100422 ^handle 27 ^property @100122 ^item-type predicate)
+   (@100423 ^handle 28 ^property @100122 ^item-type predicate)
+   (@100424 ^handle 29 ^property @100122 ^item-type predicate)
+   (@100425 ^handle 30 ^property @100122 ^item-type predicate)
+   (@100426 ^handle 31 ^property @100122 ^item-type predicate)
+   (@100427 ^handle 40 ^property @100122 ^item-type predicate)
+}

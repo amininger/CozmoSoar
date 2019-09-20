@@ -1,0 +1,85 @@
+
+sp {op_find1*external*propose*op_face1
+   (state <s> ^name op_find1
+              ^problem-space.execution-type external
+              ^target-object <obj>)
+   (<obj> ^svs-obj <svs>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name op_face1
+        ^item-type task-operator
+        ^task-handle face1
+        ^arg1 <arg1>)
+   (<arg1> ^arg-type object
+           ^id <obj>)
+}
+
+sp {op_find1*external*propose*op_scan1
+   (state <s> ^name op_find1
+              ^problem-space.execution-type external
+              ^target-object <obj>
+             -^current-task-segment.completed-scan <loch>
+              ^world.robot.current-location.handle <loch>)
+   (<obj> -^svs-obj <svs>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name op_scan1
+        ^item-type task-operator
+        ^task-handle scan1
+        ^until-clause <until>)
+   (<until> ^arg-type until-clause
+            ^pred-count 1
+            ^1 <p1>)
+   (<p1> ^type unary
+         ^handle visible1
+         ^property-handle is-visible1
+         ^1 <obj>)
+}
+
+sp {op_find1*external*propose*op_go-to-location1*south
+   (state <s> ^name op_find1
+              ^problem-space.execution-type external
+              ^target-object <obj>
+              ^current-task-segment.completed-scan loc-north1
+             -^current-task-segment.completed-scan loc-south1
+              ^world.robot.current-location.handle loc-north1)
+   (<obj> -^svs-obj <svs>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name op_go-to-location1
+        ^item-type task-operator
+        ^task-handle go-to-location1
+        ^arg2 <arg2>)
+   (<arg2> ^arg-type partial-predicate
+           ^handle to1
+           ^2 <loc>)
+   (<loc> ^handle loc-south1
+          ^item-type object
+          ^predicates <preds>)
+   (<preds> ^category location
+            ^name southern1)
+}
+
+sp {op_find1*external*propose*op_go-to-location1*north
+   (state <s> ^name op_find1
+              ^problem-space.execution-type external
+              ^target-object <obj>
+              ^current-task-segment.completed-scan loc-south1
+             -^current-task-segment.completed-scan loc-north1
+              ^world.robot.current-location.handle loc-south1)
+   (<obj> -^svs-obj <svs>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name op_go-to-location1
+        ^item-type task-operator
+        ^task-handle go-to-location1
+        ^arg2 <arg2>)
+   (<arg2> ^arg-type partial-predicate
+           ^handle to1
+           ^2 <loc>)
+   (<loc> ^handle loc-north1
+          ^item-type object
+          ^predicates <preds>)
+   (<preds> ^category location
+            ^name northern1)
+}

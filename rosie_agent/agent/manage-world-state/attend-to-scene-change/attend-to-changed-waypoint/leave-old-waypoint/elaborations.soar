@@ -1,0 +1,53 @@
+# old-waypoint: the waypoint we are leaving (elaborated from superoperator)
+sp {leave-old-waypoint*elaborate*old-waypoint
+   (state <s> ^name leave-old-waypoint
+              ^superstate.operator.old-waypoint <wp>)
+-->
+   (<s> ^old-waypoint <wp>)
+}
+
+# old-location: the location (if any) we are leaving
+sp {leave-old-waypoint*elaborate*old-location
+   (state <s> ^name leave-old-waypoint
+              ^top-state.world.robot.current-location <old-loc>)
+-->
+   (<s> ^old-location <old-loc>)
+}
+
+#### Group objects into confirmed and unconfirmed (did see in the old loction)
+
+# List unconfirmed objects
+sp {leave-old-waypoint*elaborate*unconfirmed-object
+   (state <s> ^name leave-old-waypoint
+              ^top-state.world.objects.object <obj>)
+   (<obj> -^task-object true
+           ^predicates.is-confirmed1 not-confirmed1)
+-->
+   (<s> ^unconfirmed-object <obj>)
+}
+
+# Flag if there exists at least 1 unconfirmed object
+sp {leave-old-waypoint*elaborate*unconfirmed-objects*true
+   (state <s> ^name leave-old-waypoint
+              ^unconfirmed-object <any>)
+-->
+   (<s> ^unconfirmed-objects true)
+}
+
+# List confirmed objects
+sp {leave-old-waypoint*elaborate*confirmed-objects
+   (state <s> ^name leave-old-waypoint
+              ^top-state.world.objects.object <obj>)
+   (<obj> ^predicates <preds>)
+   (<preds> ^is-confirmed1 confirmed1)
+-->
+   (<s> ^confirmed-object <obj>)
+}
+
+# Flag if there exists at least 1 confirmed object with an svs object
+sp {leave-old-waypoint*elaborate*confirmed-objects*true
+   (state <s> ^name leave-old-waypoint
+              ^confirmed-object.svs-obj <any>)
+-->
+   (<s> ^confirmed-objects true)
+}

@@ -1,0 +1,4 @@
+pushd worlds
+source world_source.soar
+popd
+

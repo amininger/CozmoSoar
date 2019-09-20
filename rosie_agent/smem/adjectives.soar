@@ -1,0 +1,490 @@
+## CARDINAL DIRECTIONS: N, S, E, W as adjectives
+smem --add {
+           (<northern>  ^spelling |northern| 
+                        ^structure-type ADJ
+                        ^referent @100354)
+
+           (<southern>  ^spelling |southern| 
+                       ^structure-type ADJ
+                       ^referent @100356)
+
+          (<eastern>  ^spelling |eastern| 
+                       ^structure-type ADJ
+                       ^referent  @100355)
+
+           (<western>  ^spelling |western| 
+                       ^structure-type ADJ
+                       ^referent @100357)
+}
+
+smem --add {
+           ### Adjectives
+            
+           (<lat> ^spelling |latter|
+                   ^referent <latter2>
+                   ^attachment immediate
+                   ^structure-type ADJ)
+           (<latter2> ^handle latter
+                      ^property <lat3>)
+           (<lat3>  ^handle grammatical-property
+                    ^type grammatical)
+           
+           (<for1> ^spelling |former|
+                   ^referent <former2>
+                   ^attachment immediate
+                   ^structure-type ADJ)
+           (<former2> ^handle former
+                      ^property <lat3>)
+           
+         (<your1>  ^spelling |yours|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100235) 
+   
+          (<cle1>  ^spelling |clear|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100232)
+          
+(<ava1>  ^spelling |available|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100233)
+
+          
+(<acces1>  ^spelling |accessible|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100234)
+          
+          (<diag1>  ^spelling |cross-diagonal| #JK todo hack, parser cannot deal with both versions of diagonal
+                   ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100236)
+          
+           (<fill1> ^spelling |filled|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100237)
+           
+           (<grouped1> ^spelling |grouped|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100238)
+
+          (<fre1> ^spelling |free|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100239)
+           
+          (<absent> ^spelling |absent|
+                   ^structure-type ADJ
+                 #  ^attachment immediate
+                   ^referent @100240)
+                       
+          (<full1>  ^spelling |full|
+                   ^structure-type ADJ
+             #      ^attachment immediate
+                   ^referent @100241)
+                         
+          (<fre1> ^spelling |free|
+                   ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100239)
+           
+          (<ene1> ^spelling |enemy|
+                   ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100242)
+          
+          (<dest1> ^spelling |destination|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100503)
+                       
+          (<line1> ^spelling |linear|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100243)
+          
+          (<cent1> ^spelling |center|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100244)
+          
+   #(<corn1> ^spelling |corner|
+   #                ^structure-type ADJ
+   #                ^attachment immediate
+   #                ^referent @corner)        
+          (<edge1> ^spelling |edge|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100245)
+                                             
+
+          (<cov1> ^spelling |covered|
+                   ^structure-type ADJ
+                  # ^attachment immediate
+                   ^referent @100246)
+                                             
+          (<mov1> ^spelling |moved|
+                   ^structure-type ADJ
+                  # ^attachment immediate
+                   ^referent @100247)
+		(<placed1> ^spelling |placed|
+                   ^structure-type ADJ
+                  # ^attachment immediate
+                   ^referent @100248)
+		(<trashed1> ^spelling |trashed|
+                   ^structure-type ADJ
+                  # ^attachment immediate
+                   ^referent @100249)
+  
+          (<capt1> ^spelling |captured|
+                   ^structure-type ADJ
+                  # ^attachment immediate
+                   ^referent @100250)
+                   
+          (<vis1> ^spelling |visible|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100217)
+                   
+          (<grab1> ^spelling |grabbable|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100222)
+                   
+          (<reach1> ^spelling |reachable|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100220)
+                          
+          (<occ1> ^spelling |occupied|
+                  ^merge-delay true
+                   ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100251)
+                                  
+          (<mat1> ^spelling |matched|
+                  ^merge-delay true
+                   ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100252)
+
+	      (<mat2> ^spelling |matching|
+                  ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100253)
+		  
+		  (<iden> ^spelling |identical|
+                  ^structure-type ADJ
+                   #^attachment immediate
+                   ^referent @100254)
+                                         
+          (<usu1> ^spelling |usual|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100255)
+                                              
+          (<other1> ^spelling |other|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100256)
+                                         
+          (<int1> ^spelling |initial|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100257)
+                                      
+          (<fin1> ^spelling |final|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100258)
+                                                          
+          (<last1> ^spelling |last|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100259)
+                              
+          (<opp1> ^spelling |opposite|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100260) 
+
+(<curr1> ^spelling |current|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100261)   
+
+          (<stro1> ^spelling |strong|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100264)   
+
+          (<weak1> ^spelling |weak|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100265)   
+
+		  (<low1> ^spelling |low|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100268)   
+	      (<high1> ^spelling |high|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100269)   
+
+		  (<dark1> ^spelling |dark|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100272)   
+          (<light1> ^spelling |light|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100267)   
+
+		  (<bright1> ^spelling |bright|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100273)   
+          (<dim1> ^spelling |dim|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100271)   
+
+		  (<hard1> ^spelling |hard|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100274)   
+          (<soft1> ^spelling |soft|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100275)   
+
+		  (<heavy1> ^spelling |heavy|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100266)
+   
+          (<top1> ^spelling |top|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100049)   
+
+		  (<bottom1> ^spelling |bottom|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100270)
+    
+			(<largest1> ^spelling |largest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100276)
+  			 (<smallest1> ^spelling |smallest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100277) 
+
+
+          (<stroest1> ^spelling |strongest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100278)   
+
+          (<weakest1> ^spelling |weakest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100279)   
+
+		  (<lowest1> ^spelling |lowest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100282)
+   
+	      (<highest1> ^spelling |highest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100283)   
+
+		  (<darkest1> ^spelling |darkest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100285)
+
+          (<lightest1> ^spelling |lightest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100281)   
+
+		  (<brightest1> ^spelling |brightest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100286)
+
+          (<dimmest1> ^spelling |dimmest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100284)   
+
+		  (<hardest1> ^spelling |hardest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100287)
+
+          (<softest1> ^spelling |softest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100288)   
+
+		  (<heaviest> ^spelling |heaviest|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100280)
+                                                                   
+          (<your> ^spelling |your|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100262)
+          
+          (<orig1> ^spelling |original|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100504)
+
+          (<emp1> ^spelling |empty|
+                   ^structure-type ADJ
+                   ^attachment immediate #JK uncomment AM CONFLICT
+                   ^referent @100263)
+          
+          (<sam1> ^spelling |same|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100323)
+           
+          (<no1> ^spelling |no|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100323)
+                   
+           (<closed2> ^spelling |closed|
+                   ^structure-type ADJ
+                   ^referent @100379)
+           
+          (<closed> ^spelling |closed|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100379)
+          
+
+(<last1> ^spelling |last-moved|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100381)
+                  
+           (<coo1> ^spelling |cooked|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100375)
+                  
+           (<raw1> ^spelling |raw|
+                   ^structure-type ADJ
+                   ^referent @100376)
+           
+           (<open2> ^spelling |open|
+                   ^structure-type ADJ
+                   ^referent @100378)
+
+         # AMADD: 
+          (<open> ^spelling |opened|
+                   ^structure-type ADJ
+                   ^attachment immediate
+                   ^referent @100378)
+                  
+
+          (<wild> ^spelling |wild|
+                         ^structure-type ADJ
+                   ^attachment immediate
+                         ^referent @100505)         
+           
+          (<top> ^spelling |top|
+                   ^attachment immediate
+                         ^structure-type ADJ
+                         ^referent @100049)
+                              
+   #          (<corner> ^spelling |corner|
+   #                  ^attachment immediate
+   #                  ^structure-type ADJ
+   #                  ^referent @corner)
+## is off.
+           (<turned> ^spelling |turned|
+                     ^structure-type V
+                     ^tense past
+                     ^can-be-part-of |turned-on|)     
+      
+           (<off2> ^prior-word |turned|
+                   ^current-word |off|
+                   ^spelling |turned-off|
+                   ^structure-type ADJ
+                   ^referent @100373
+                   ^attachment immediate
+                   ^consumes-prior-word true)
+           
+           (<off3>  ^spelling |off|
+                    ^structure-type ADJ
+                    ^attachment immediate
+                   #^alternative-structure P
+                    ^referent @100373)
+           
+## is on.
+           (<on1> ^prior-word |turned|
+                  ^current-word |on|
+                  ^spelling |turned-on|
+                  ^structure-type ADJ
+                  ^attachment immediate
+                  ^referent @100372
+                  ^consumes-prior-word true)
+                       
+           (<on2> #^spelling |on|  # JEL 9/23/2015 - Avoid confusion with preposition right now
+                  ^structure-type ADJ
+                   ^attachment immediate
+                  ^alternative-structure P
+                  ^referent @100372)  
+                       
+           (<lit> ^spelling |lit|  # JEL 9/23/2015 - Avoid confusion with preposition right now
+                  ^structure-type ADJ
+                   ^attachment immediate
+                  ^referent @100372)  
+}
+
+smem --add {(<next> ^prior-word D
+                    ^spelling |next|
+                    ^structure-type ADJ
+                   ^attachment immediate
+                    ^referent <next-adj>)
+            (<next-adj> ^handle next1)
+}
+
+
+
+smem --add {
+           (<is-done> ^spelling |done|
+                      ^structure-type ADJ
+                      ^referent @100229) 
+           
+           (<is-finished> 
+                      ^spelling |finished|
+                      ^structure-type ADJ
+                      ^referent @100229)   
+           
+           (<won> 
+                      ^spelling |won|
+                      ^structure-type ADJ
+                      ^referent @100230) 
+         
+           (<lost> 
+                      ^spelling |lost|
+                      ^structure-type ADJ
+                      ^referent @100231) 
+}

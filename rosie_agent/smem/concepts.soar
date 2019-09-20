@@ -1,0 +1,233 @@
+# Different categories
+smem --add {
+   (@100205 ^handle property ^type visual)
+
+   (@100001 ^handle color ^type visual ^item-type property ^property @100206)
+
+   (@100012 ^handle shape ^type visual ^item-type property ^property @100090)
+
+   (@100032 ^handle size ^type visual ^item-type property ^property @100206)
+
+   (@100038 ^handle name ^type visual ^item-type property)
+
+   (@100070 ^handle weight ^type measurable ^item-type property ^property @100090)
+
+   (@100075 ^handle temperature ^type measurable ^item-type property ^property @100090)
+
+   (@100207 ^handle spatial-shape ^type visual ^item-type property)
+
+   (@100098 ^handle category ^type visual ^item-type property)
+
+   (@100108 ^handle subcategory ^type visual ^item-type property)
+
+   (@100066 ^handle possessive ^item-type property)
+
+   (@100085 ^handle modifier1 ^type visual ^item-type property)
+
+   (@100090 ^handle concept ^type conceptual)
+   
+   (@100206 ^handle numeric ^type conceptual)
+
+   (@100208 ^handle cardinal-direction1 ^item-type property)
+
+   (@100209 ^handle relative-direction1 ^item-type property)
+
+   (@100210 ^handle unit ^type unit ^item-type property)
+
+   (@100211 ^handle container1 ^type visual ^item-type property)
+
+   (@100212 ^handle is-visible1 ^type visual ^item-type property)
+
+   (@100213 ^handle is-reachable1 ^type visual ^item-type property)
+
+   (@100214 ^handle is-grabbable1 ^type visual ^item-type property)
+
+   (@100215 ^handle is-confirmed1 ^type visual ^item-type property)
+
+   (@100216 ^handle is-following1 ^type visual ^item-type property)
+
+}
+
+# Misc Concepts
+smem --add {
+   # Visibility
+   (@100217 ^handle visible1 ^property @100212)
+   (@100218 ^handle not-visible1 ^property @100212)
+   (@100219 ^handle unknown-visible1 ^property @100212)
+
+   # Reachable
+   (@100220 ^handle reachable1 ^property @100213)
+   (@100221 ^handle not-reachable1 ^property @100213)
+
+   # Grabbable
+   (@100222 ^handle grabbable1 ^property @100214)
+   (@100223 ^handle not-grabbable1 ^property @100214)
+
+   # Confirmed
+   (@100224 ^handle confirmed1 ^property @100215)
+   (@100225 ^handle not-confirmed1 ^property @100215)
+
+   # Following
+   (@100226 ^handle following1 ^property @100216)
+   (@100227 ^handle not-following1 ^property @100216)
+
+   # Rosie
+   (@100228 ^handle rosie)
+
+   
+   (@100229 ^handle task-completed ^property @100090 ^item-type predicate)
+   (@100230 ^handle won ^property @100090 ^item-type predicate)
+   (@100231 ^handle lost ^property @100090 ^item-type predicate)
+   (@100232 ^handle clear ^property @100205)
+   (@100233 ^handle available ^property @100205)
+   (@100234 ^handle accessible ^property @100205)
+   (@100235 ^handle yours ^property @100205)
+   (@100236 ^handle diagonal ^property @100205)
+   (@100237 ^handle filled ^property @100205)
+   (@100238 ^handle grouped ^property @100205)
+   (@100239 ^handle free ^property @100205)
+   (@100240 ^handle absent ^property @100205)
+   (@100241 ^handle full1 ^property @100211)
+   (@100242 ^handle enemy ^property @100205)
+   (@100243 ^handle linear ^property @100205)
+   (@100244 ^handle center ^property @100205)
+   #(@corner ^handle corner ^property @property)
+   (@100245 ^handle edge ^property @100205)
+   (@100246 ^handle covered ^property @100205)
+   (@100247 ^handle moved ^property @100205)
+   (@100248 ^handle placed ^property @100205)
+   (@100249 ^handle trashed ^property @100205)
+   (@100250 ^handle captured ^property @100205)
+   (@100251 ^handle occupied ^property @100205)
+   (@100252 ^handle matched ^property @100205)
+   (@100253 ^handle matching ^property @100205)
+   (@100254 ^handle identical ^property @100205)
+   (@100255 ^handle usual ^property @100205)
+   (@100256 ^handle other ^property @100205)
+   (@100257 ^handle initial ^property @100205)
+   (@100258 ^handle final ^property @100205)
+   (@100259 ^handle last ^property @100205)
+   (@100260 ^handle opposite ^property @100205)
+   (@100261 ^handle current ^property @100205)
+   (@100262 ^handle your ^property @100205)
+   (@100263 ^handle empty1 ^property @100205)
+   #(@empty ^handle empty1 ^property @container1) #JK
+
+   (@100264 ^handle strong ^property @100205)
+   (@100265 ^handle weak ^property @100205)
+   (@100266 ^handle heavy ^property @100205)
+   (@100267 ^handle light ^property @100205)
+   (@100268 ^handle low ^property @100205)
+   (@100269 ^handle high ^property @100205)
+   (@100049 ^handle top ^property @100205)
+   (@100270 ^handle bottom ^property @100205)
+   (@100271 ^handle dim ^property @100205)
+   (@100272 ^handle dark ^property @100205)
+   (@100273 ^handle bright ^property @100205)
+   (@100274 ^handle hard ^property @100205)
+   (@100275 ^handle soft ^property @100205)
+   
+   (@100276 ^handle largest ^property @100205)
+   (@100277 ^handle smallest ^property @100205)
+
+   (@100278 ^handle strongest ^property @100205)
+   (@100279 ^handle weakest ^property @100205)
+   (@100280 ^handle heaviest ^property @100205)
+   (@100281 ^handle lightest ^property @100205)
+   (@100282 ^handle lowest ^property @100205)
+   (@100283 ^handle highest ^property @100205)
+   (@100284 ^handle dimmest ^property @100205)
+   (@100285 ^handle darkest ^property @100205)
+   (@100286 ^handle brightest ^property @100205)
+   (@100287 ^handle hardest ^property @100205)
+   (@100288 ^handle softest ^property @100205)
+   
+   (@100289 ^handle peg ^property @100205)
+   (@100290 ^handle knight ^property @100205)
+   (@100100 ^handle person ^property @100205)
+   (@100291 ^handle agent ^property @100205)
+   (@100292 ^handle actor ^property @100205)
+   (@100293 ^handle manager ^property @100205)
+   (@100294 ^handle piece ^property @100205)
+   (@100295 ^handle frog ^property @100205)
+   (@100296 ^handle toad ^property @100205)
+   (@100297 ^handle grape ^property @100205)
+   (@100298 ^handle grapefruit ^property @100205)
+   (@100299 ^handle goose ^property @100205)
+   (@100300 ^handle bean ^property @100205)
+   (@100301 ^handle fox ^property @100205)
+   (@100302 ^handle passenger ^property @100205)
+   (@100303 ^handle line ^property @100205)
+   (@100304 ^handle group ^property @100205)
+   (@100305 ^handle grouping ^property @100205)
+   (@100306 ^handle rank ^property @100205)
+   (@100307 ^handle file ^property @100205)
+   
+   (@100308 ^handle region ^property @100205)
+   (@100309 ^handle stack ^property @100205)
+   (@100310 ^handle solution-depth ^property @100205)
+   #(@column1 ^handle column1 ^property @property)
+   
+   (@100311 ^handle owner ^property @100090)
+   (@100312 ^handle partner ^property @100090)
+   (@100313 ^handle age ^property @100206)
+   (@100314 ^handle score ^property @100206)
+   (@100315 ^handle husband ^property @100090)
+   (@100316 ^handle wife ^property @100090)
+   (@100317 ^handle position ^property @100206)
+   #(@aposition ^handle position ^property @concept)#TODO second version of position.. so can override with location under block
+   (@100318 ^handle neighbor ^property @100090)
+   (@100319 ^handle occupant ^property @100090)
+   (@100320 ^handle constraints ^property @100090)
+   (@100321 ^handle manager1 ^property @100090)
+   (@100322 ^handle passenger1 ^property @100090)
+   
+   (@100323 ^handle same ^property @100205)
+  #(@closed ^handle closed ^property @property)
+   (@100324 ^handle name1 ^property @100090)
+   (@100325 ^handle number1 ^property @100206 ^function @100326)
+   (@100326 ^type count ^function soar-count)
+   (@100327 ^handle letter1 ^property @100090)
+   (@100328 ^handle action 
+            ^property @100329)
+   (@100329 ^handle action ^type action)
+   (@100330 ^handle relation ^property @100090)
+   (@100331 ^handle last-name ^property @100206)
+   (@100332 ^handle volume ^property @100206)
+   (@100333 ^handle difference ^property @100206 ^function @100334)
+   (@100334 ^type difference ^function soar-difference)
+   	
+   (@100335 ^handle value ^property @100206)
+   (@100336 ^handle value ^property @100206 ^multiple true)
+   (@100337 ^handle sum ^property @100206 ^function @100338)
+   (@100338 ^type sum ^function soar-sum)
+   (@100339 ^handle product ^property @100206 ^function @100340)
+   (@100340 ^type product ^function soar-product)
+   (@100341 ^handle column ^property @100206 ^multiple true)
+   (@100342 ^handle row ^property @100206 ^multiple true)
+   (@100343 ^handle column ^property @100206)
+   (@100344 ^handle row ^property @100206)
+   (@100345 ^handle section ^property @100206)
+   #(@rank1 ^handle rank1 ^property @numeric)
+   (@100346 ^handle suit ^property @100206)
+	
+   (@100347 ^handle solution1 ^property @100098 ^item-type object) 
+   (@100101 ^handle location ^property @100098)
+   (@100348 ^handle location ^property @100098 ^multiple true)
+   (@100099 ^handle block ^property @100098)
+   (@100349 ^handle block ^property @100098 ^multiple true)
+   (@100350 ^handle steps1 ^property @100012 ^multiple true ^item-type object)
+   (@100351 ^handle missionary1 ^property @100012 ^multiple true)
+   (@100352 ^handle cannibal1 ^property @100012 ^multiple true)
+   (@100353 ^handle lights1 ^property @100012 ^item-type predicate)
+}
+
+# Additional info on templated words
+smem --add {
+   (@100119 ^output-word door)
+   (@100117 ^output-word intersection)
+
+   (@100065 ^person-name alice1)
+   (@100067 ^person-name bob1)
+   (@100068 ^person-name charlie1)
+}

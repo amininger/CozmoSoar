@@ -1,0 +1,89 @@
+sp {learn-task-action-model*propose*learn-action-model-rule
+   (state <s> ^name learn-task-action-model
+              ^created-desired <d>)
+-->
+   (<s> ^operator <o> + >)
+   (<o> ^name learn-action-model-rule)
+}
+
+sp {learn-task-action-model*apply*learn-action-model-rule*mark*tried-tied-operator
+   (state <s> ^name learn-task-action-model
+              ^operator.name learn-action-model-rule
+              ^superstate <ss>)
+   (<ss> ^operator <o>
+         ^untried-tied-operator <o>)
+-->
+   (<ss> ^untried-tied-operator <o> -
+         ^tried-tied-operator <o>)
+}
+
+sp {learn-task-action-model*apply*learn-action-model-rule*update*current-evaluation-depth
+   (state <s> ^name learn-task-action-model
+              ^operator.name learn-action-model-rule
+              ^superstate <ss>)
+   (<ss> ^operator <o>
+         ^current-evaluation-depth <ced>)
+-->
+   (<ss> ^current-evaluation-depth <ced> -
+         ^current-evaluation-depth (- <ced> 1))
+}
+
+sp {__task__action__model__*learn-action-model-rule*unary*predicate
+   (state <s> ^name learn-task-action-model
+              ^operator.name learn-action-model-rule
+              ^superstate.problem-space <ps>
+              ^created-desired <des>)
+   (<ps> ^name action
+         ^execution-type internal)
+   (<des> ^pred-count 1
+          ^<gpnum> <gp>)
+   (<gp> ^type unary
+         ^handle <pred-h>
+         ^property-handle <prop-h>
+         ^1 <obj>)
+   (<obj> ^predicates <obj-preds>)
+-->
+   (<obj-preds> ^<prop-h> <pred-h>)
+}
+
+sp {__task__action__model__*learn-action-model-rule*remove*other*predicate
+   (state <s> ^name learn-task-action-model
+              ^operator.name learn-action-model-rule
+              ^superstate.problem-space <ps>
+              ^created-desired <des>)
+   (<ps> ^name action
+         ^execution-type internal)
+   (<des> ^pred-count 1
+          ^<gpnum> <gp>)
+   (<gp> ^type unary
+         ^handle <pred-h>
+         ^property-handle <prop-h>
+         ^1 <obj>)
+   (<obj> ^predicates <obj-preds>)
+   (<obj-preds> ^<prop-h> { <other-pred> <> <pred-h> })
+-->
+   (<obj-preds> ^<prop-h> <other-pred> -)
+}
+
+sp {__task__action__model__*learn-task-action-model*1*relation
+   (state <s> ^name learn-task-action-model
+              ^operator.name learn-action-model-rule
+              ^superstate.problem-space <ps>
+              ^created-desired <des>
+              ^world.predicates.predicate <wpred>)
+   (<ps> ^name action
+         ^execution-type internal)
+   (<des> ^pred-count 1
+          ^<gpnum> <gp>)
+   (<gp> ^type relation
+         ^handle <rel-h>
+         ^1 <obj1>
+         ^2 <obj2>)
+   (<wpred> ^handle <rel-h>)
+   -{(<wpred> ^instance <i>)
+     (<i> ^1 <obj1> ^2 <obj2>)}
+-->
+    (<wpred> ^instance <i>)
+    (<i> ^1 <obj1> ^2 <obj2>)
+}
+

@@ -1,0 +1,23 @@
+sp {search-for-next-subtask*elaborate*problem-space
+   (state <s> ^name search-for-next-subtask)
+-->
+   (<s> ^default-problem-space no)
+
+   (<s> ^problem-space <ps>)
+   (<ps> ^name action
+         ^subproblem search
+         ^action <a>
+         ^learning <l>
+         ^perception <p>
+         ^world <w>)
+   (<w> ^copy-type shallow)
+   (<p> ^attend-to-all-perception no)
+}
+
+sp {search-for-next-subtask*elaborate*problem-space*search-level
+   (state <s> ^name search-for-next-subtask
+              ^problem-space <ps>)
+-->
+   (<ps> ^search-level 1)
+}
+

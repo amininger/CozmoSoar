@@ -1,0 +1,10 @@
+sp {match-task-operator*reject*all*operators*if*unmatched
+   (state <s> ^match-task-operator <mto>
+              ^operator <o> +)
+   (<o> -^always-propose true)
+   (<mto> -^successful-match <mo>)
+-->
+   (<s> ^operator <o> -)
+   (<s> ^learning-chunking-rule true)
+}
+   

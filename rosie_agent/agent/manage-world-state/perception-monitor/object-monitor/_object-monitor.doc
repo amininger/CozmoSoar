@@ -1,0 +1,143 @@
+
+manage-world-state/perception-monitor/object-monitor
+
+############## elaborate-object-info.soar ############
+
+Elaborates substructure of object-monitor/object-info
+
+# REQUIRED #
+
+object-handle <handle> 
+	The handle of the object, must be there on creation
+	
+perception-id <id> 
+	The id for the perception object in svs, must be there on creation
+
+belief-id <id> 
+	The id to use on the belief object in svs, must be there on creation
+
+# ELABORATED #
+
+status <status> 
+	Contains wmes for monitoring object status (see elaborate-object-status.soar)
+
+differences <diffs> 
+	Contains wmes for monitoring differneces between perception and belief (see elaborate-object-differences.soar)
+
+properties <props> 
+	Contains wmes for monitoring object properties from perception (see elaborate-object-properties.soar)
+
+perception-obj <obj> 
+	Reference to the perceptual object in svs (matches perception-id)
+
+belief-obj <obj> 
+	Reference to the belief object in svs (matches belief-id)
+
+input-link-obj <obj> 
+	Reference to the object representation on the input-link (matches object-handle)
+
+wm-obj <obj> 
+	Reference to the object representation in working memory (top-state.world.objects.object <obj>)
+	(matches object-handle)
+	
+check-stability-time <t>
+    The time to check whether a new object has been stable (hasn't moved/grown/shrunk much)
+
+check-occlusion-time <t>
+    The time to recheck whether the object is still occluded
+    
+check-growth-time <t>
+    The time to recheck if the object has still grown 
+
+
+######### elaborate-object-status.soar ##########
+
+Elaborates object-info.status <status>
+
+in-view << true false >>
+	True if the belief object intersects the robot's view volume
+	(The object should be in view)
+	
+is-visible1 << visible1 not-visible1 >>
+	True if the object is visible (coming in on perception)
+	
+is-occluded << true false >>
+    True if the object is being occluded
+
+stability-timer-expired true    
+    True if object-info.check-stability-time has passed
+    
+occlusion-timer-expired true    
+    True if object-info.check-occlusion-time has passed
+    
+growth-timer-expired true   
+    True if object-info.check-growth-time has passed
+	
+	
+######## elaborate-object-properties.soar ########
+
+Elaborates object-info.properties <props>
+
+Each att/val pair on input-link-obj.classifications <cls>
+	is copied onto this id
+	
+
+####### elaborate-object-differences.soar ########
+
+Comparing Positions:
+	If there is both a belief-obj and perception-obj
+	Creates a extract distance filter on the top-state.svs.command link (^compare-position)
+	Elaborates the result as ^pos-diff <val>
+	
+Comparing Volumes:
+    If there is both a belief-obj and perception-obj
+    Creates an extract volume filter for the belief object and perception object (^belief-vol, ^perception-vol)
+    Elaborates ^vol-diff <diff> as (perception volume)/(belief volume)
+	
+has-moved true
+	Created if pos-diff > agent-params.pos-diff-threshold
+	
+has-grown true
+    Created if vol-diff > agent-params.vol-high-diff-threshold
+	
+has-shrunk true
+    Created if vol-diff < agent-params.vol-low-diff-threshold
+
+	
+####### elaborate-change.soar ######
+
+Lists the types of object changes that can occur, and the rules to detect those changes
+
+Change: new-object [attend-to-new-object]
+	Occurs when a new perception object comes in on the svs link
+	^perception-obj - root identifier of the svs object
+	
+Change: newly-visible-object [attend-to-newly-visible-object]
+	Occurs when the object is visible but noted as not visible in working memory
+	^object-info - reference to the object-info structure
+
+Change newly-not-visible-object [attend-to-newly-not-visible-object]
+	Occurs when the object is no longer visible but noted as visible in working memory
+	^object-info - reference to the object-info structure
+
+Change moved-object [attend-to-moved-object]
+	Occurs when there is a ^has-moved true flag under ^differences
+	^object-info - reference to the object-info structure
+
+Change update-pose [update-object-pose]
+	Occurs when there is an ^update-pose true flag on the object-info
+	^object-info - reference to the object-info structure
+
+Change missing-object [attend-to-missing-object]
+	Occurs when an object is in-view but not visible (under ^status)
+	^object-info - reference to the object-info structure
+
+Change delete-object [delete-object]
+	Occurs when there is a ^delete-object true flag on the object-info
+	^object-info - reference to the object-info structure
+
+Change new-object-predicate [attend-to-new-object-predicate]
+	Occurs when a predicate is under ^properties that is not on the wm-obj structure
+	^object-info - reference to the object-info structure
+	^property-handle - name of the property
+	^predicate-handle - name of the predicate

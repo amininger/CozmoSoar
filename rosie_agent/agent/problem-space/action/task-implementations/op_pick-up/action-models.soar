@@ -1,0 +1,44 @@
+################################################
+### pick-up
+#
+
+sp {action*apply*op_pick-up1*do*action-model*mark*grabbed
+   (state <s> ^problem-space.name action
+              ^problem-space.execution-type internal
+              ^operator <op>)
+   (<op> ^name op_pick-up1
+         ^arg1.id.predicates <preds>)
+   (<preds> ^arm-status not-grabbed)
+-->
+   (<preds> ^arm-status grabbed
+            ^arm-status not-grabbed -)
+}
+
+sp {action*apply*op_pick-up1*do*action-model*remove*relations*1
+   (state <s> ^problem-space.name action
+              ^problem-space.execution-type internal
+              ^operator <o>
+              ^world.predicates.predicate <pred>)
+   (<o> ^name op_pick-up1
+        ^arg1.id <obj>)
+   (<pred> ^handle <any>
+           ^instance <i>)
+   (<i> ^1 <obj> ^2 <other>)
+-->
+   (<pred> ^instance <i> -)
+}
+
+sp {action*apply*op_pick-up1*do*action-model*remove*relations*2
+   (state <s> ^problem-space.name action
+              ^problem-space.execution-type internal
+              ^operator <o>
+              ^world.predicates.predicate <pred>)
+   (<o> ^name op_pick-up1
+        ^arg1.id <obj>)
+   (<pred> ^handle <any>
+           ^instance <i>)
+   (<i> ^1 <other> ^2 <obj>)
+-->
+   (<pred> ^instance <i> -)
+}
+

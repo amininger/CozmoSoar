@@ -1,0 +1,17 @@
+# Elaborate top-state with pointer to self.
+sp {elaborate*top-state*top-state
+   :default
+   (state <s> ^superstate nil)
+-->
+   (<s> ^top-state <s>)
+}
+## Elaborate a substate with a pointer to the top-state
+
+sp {elaborate*state*top-state
+   :default
+   (state <s> ^superstate <ss>)
+   (<ss> ^top-state <ts> 
+        -^operator.name evaluate-operator)
+-->
+   (<s> ^top-state <ts>)
+}

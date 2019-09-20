@@ -1,0 +1,49 @@
+# Elaborate bottom task onto set of task segments
+sp {top-state*elaborate*task-stack*bottom*task*segment
+   (state <s> ^superstate nil
+              ^task-stack <stack>)
+   (<stack> ^bottom { <seg> <> none }
+            ^segments <segs>)
+-->
+   (<segs> ^segment <seg>)
+}
+
+# Elaborate other segments onto the set
+sp {top-state*elaborate*segments*next*segment
+   (state <s> ^superstate nil
+              ^task-stack.segments <segs>)
+   (<segs> ^segment <seg>)
+   (<seg> ^next { <next> <> none })
+-->
+   (<segs> ^segment <next>)
+}
+
+sp {top-state*elaborate*task-stack*task-objects
+  (state <s> ^superstate nil
+             ^task-stack <stack>)
+-->
+  (<stack> ^task-objects <objs>)
+}
+
+sp {top-state*elaborate*task-stack*task-object*mark*object
+  (state <s> ^superstate nil
+             ^task-stack.task-objects.object <obj>)
+-->
+  (<obj> ^task-object true)
+}
+
+sp {top-state*elaborate*task-stack*bottom*depth*1
+   (state <s> ^superstate nil
+              ^task-stack.bottom { <bottom> <> none })
+-->
+   (<bottom> ^depth 1)
+}
+
+sp {top-state*elaborate*task-stack*depth*increment
+   (state <s> ^superstate nil
+              ^task-stack.segments.segment <seg>)
+   (<seg> ^depth <d>
+          ^next { <n> <> none })
+-->
+   (<n> ^depth (+ <d> 1))
+}

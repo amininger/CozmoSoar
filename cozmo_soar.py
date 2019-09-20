@@ -400,7 +400,7 @@ class CozmoSoar(psl.AgentConnector):
             return False
 
         print("Going to object {}".format(target_id))
-        go_to_object_action = self.robot.go_to_object(target_obj.cozmo_obj, distance_mm(1000), in_parallel=True)
+        go_to_object_action = self.robot.go_to_object(target_obj.cozmo_obj, distance_mm(100), in_parallel=True)
         status_wme = psl.SoarWME("status", "running")
         status_wme.add_to_wm(command)
         status_wme.update_wm()
