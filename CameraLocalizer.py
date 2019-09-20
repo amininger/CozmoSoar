@@ -12,6 +12,9 @@ class CameraLocalizer:
     def recalculate_transform(self, pose):
         pass
 
+    def update_robot_pose(self, pose):
+        pass
+
     # cozmo_pose: xyzrpy
     def get_world_pose(self, cozmo_pose):
         return cozmo_pose

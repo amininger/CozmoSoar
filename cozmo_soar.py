@@ -19,6 +19,7 @@ rad2deg = lambda r: r/pi*180.0
 
 import time
 current_time_ms = lambda: int(round(time.time() * 1000))
+LOCALIZER_UPDATE_PERIOD = 100
 
 
 class CozmoSoar(psl.AgentConnector):
@@ -675,9 +676,9 @@ class CozmoSoar(psl.AgentConnector):
         # UPDATE ROBOT INFORMATION 
         #####################################################
 
-        if current_time_ms() - self.last_cam_update > LOCALIZER_UPDATE_RATE:
-            yaw = self.robot_data.pose.rotation.angle_z.radians
-            pos = self.robot_data.pose.position
+        if current_time_ms() - self.last_cam_update > LOCALIZER_UPDATE_PERIOD:
+            yaw = self.robot.pose.rotation.angle_z.radians
+            pos = self.robot.pose.position
             self.localizer.recalculate_transform([ pos.x/1000.0, pos.y/1000.0, pos.z/1000.0, 0.0, 0.0, yaw ])
             self.last_cam_update = current_time_ms()
 
