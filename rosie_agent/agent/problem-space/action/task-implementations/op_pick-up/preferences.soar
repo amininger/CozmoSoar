@@ -1,0 +1,29 @@
+
+sp {op_pick-up1*prefer*reset*over*pick-up
+   (state <s> ^name op_pick-up1
+             -^child-task-segment
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name send-reset-command)
+   (<o2> ^name send-pick-up-command)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {op_pick-up1*reject*complete-task*unfinished*command
+   (state <s> ^name op_pick-up1
+              ^current-task-segment.pick-up-command.status << executing running >>
+              ^operator <o> +)
+   (<o> ^name complete-task)
+-->
+   (<s> ^operator <o> -)
+}
+
+sp {op_put-down1*reject*complete-task*unfinished*command
+   (state <s> ^name op_put-down1
+              ^current-task-segment.put-down-command.status << executing running >>
+              ^operator <o> +)
+   (<o> ^name complete-task)
+-->
+   (<s> ^operator <o> -)
+}

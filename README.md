@@ -3,6 +3,14 @@
 A python-based interface between the [Soar Cognitive Architecture](https://soar.eecs.umich.edu/) and the [Cozmo](https://www.anki.com/en-us/cozmo) robot by Anki. The [Soar Markup
 Language](https://soar.eecs.umich.edu/articles/articles/soar-markup-language-sml/78-sml-quick-start-guide), Aaron Mininger's [pysoarlib](https://github.com/amininger/pysoarlib) and the [Cozmo SDK](http://cozmosdk.anki.com/docs/index.html) are used to build this interface. The purpose of the interface is to allow a Soar agent to control a fully-embodied Cozmo robot, thereby embodying the Soar agent in the real world and enabling cognitive experiments to be run on a small, flexible, and robust platform.
 
+## Tony and Nick's Update
+Overhead camera based vision localization system for CozmoSoar. 
+* localizes Cozmo with OpenCV's ArUco markers
+* calculates Cozmo's X, Y, and Z coordinates, and Euler Angle based on a marker
+* calculates Cozmo pose based on world pose
+* calculates world pose based on Cozmo pose
+* updates the robot pose periodically with linear transformation
+
 ## Installation
 Several libraries and tools are needed prior to installing the Cozmo-Soar interface itself.
 

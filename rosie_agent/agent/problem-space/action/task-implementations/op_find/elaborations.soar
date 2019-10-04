@@ -1,0 +1,27 @@
+sp {op_find1*elaborate*target-object*superoperator
+   (state <s> ^name op_find1
+              ^task-operator.arg1.id <obj>)
+-->
+   (<s> ^target-object <obj>)
+}
+
+sp {op_find1*propose*report-find-failure
+   (state <s> ^name op_find1
+              ^current-task-segment <seg>
+              ^target-object.predicates.is-visible1 not-visible1)
+   (<seg> ^completed-scan loc-north1 loc-south1)
+-->
+   (<s> ^operator <o> + > =)
+   (<o> ^name report-find-failure)
+}
+
+sp {op_find1*apply*report-find-failure
+   (state <s> ^name op_find1
+              ^operator.name report-find-failure
+              ^current-task-segment <seg>)
+-->
+   (<seg> ^status failure)
+}
+
+
+

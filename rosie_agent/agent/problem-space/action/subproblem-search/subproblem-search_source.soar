@@ -1,0 +1,8 @@
+pushd search-for-next-subtask
+source search-for-next-subtask_source.soar
+popd
+
+source elaborations.soar
+source problem-space.soar
+source preferences.soar
+

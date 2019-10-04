@@ -1,0 +1,552 @@
+# nouns, pronouns, verbs(linking , action), adjectives, adverbs, prepositions, conjunctions, interjections
+# A noun can function in a sentence as a subject, a direct object, an indirect object, a subject complement,
+# an object complement, an appositive, an adjective or an adverb.
+
+# Special cases/additional info
+smem --add {
+   (@100037 ^on-off-state-change true)
+   (@100506 ^on-off-state-change true)
+   (@100507 ^on-off-state-change true)
+                     
+   (@100508 ^syntactic-referent-type DP)
+}
+
+## CARDINAL DIRECTIONS: N, S, E, W
+smem --add {           
+           (<north>  ^spelling |north| 
+                     ^structure-type CARDINAL
+                     ^number singular
+                     ^referent @100354)
+
+           (<south>  ^spelling |south| 
+                    ^structure-type CARDINAL
+                    ^number singular
+                    ^referent @100356)
+
+          (<east>  ^spelling |east| 
+                    ^structure-type CARDINAL
+                    ^number singular
+                    ^referent  @100355)
+
+           (<west>  ^spelling |west| 
+                    ^structure-type CARDINAL
+                    ^number singular
+                    ^referent @100357)
+
+           (<n>  ^spelling  |n|
+                 ^structure-type CARDINAL
+                 ^number singular
+                 ^referent @100354)
+
+           (<s>  ^spelling  |s|
+                 ^structure-type CARDINAL
+                 ^number singular
+                 ^referent @100356)
+           
+          (<e>  ^spelling  |e|
+                 ^structure-type CARDINAL
+                 ^number singular
+                 ^referent @100355)
+
+           (<w>  ^spelling  |w|
+                 ^structure-type CARDINAL
+                 ^number singular
+                 ^referent @100357)
+}
+
+# Units
+smem --add {
+           
+           (<meter1> ^spelling |meter|
+                     ^structure-type N
+                     ^number singular
+                     ^referent @100358)           
+       
+           (<meter2> ^spelling |meters|
+                     ^structure-type N
+                     ^number plural
+                     ^referent @100358)   
+    
+           (<foot1> ^spelling |foot|
+                     ^structure-type N
+                     ^number singular
+                     ^referent @100359)           
+       
+           (<foot2> ^spelling |feet|
+                     ^structure-type N
+                     ^number plural
+                     ^referent @100359)
+       
+           (<inch1> ^spelling |inch|
+                     ^structure-type N
+                     ^number singular
+                     ^referent @100360)           
+       
+           (<inch2> ^spelling |inches|
+                     ^structure-type N
+                     ^number plural
+                     ^referent @100360)           
+       
+           (<centi1> ^spelling |centimeter|
+                     ^structure-type N
+                     ^number singular
+                     ^referent @100509)           
+       
+           (<centi2> ^spelling |centimeters|
+                     ^structure-type N
+                     ^number plural
+                     ^referent @100361)
+ 
+           (<minutes> ^spelling |minutes|
+                   ^structure-type N
+                   ^referent @100362
+                   ^number plural)
+           
+           (<minute> ^spelling |minute|
+                   ^structure-type N
+                   ^number singular
+                   ^referent @100362)
+
+           (<seconds> ^spelling |seconds|
+                   ^structure-type N
+                   ^referent @100363
+                   ^number plural)
+
+           (<hours> ^spelling |hours|
+                   ^structure-type N
+                   ^referent @100364
+                   ^number plural)
+}
+
+smem --add {
+           ### Regular Nouns
+                       
+#More in properties.soar
+           (<game> ^spelling |game|
+                   ^structure-type N
+                   ^syntactic-referent-type DP
+                   ^number singular
+                   ^object-feature handle
+                   ^referent @100089)
+
+           (<name> ^spelling |name|
+                   ^structure-type N
+                   ^number singular
+                   ^syntactic-referent-type N
+                   ^object-feature handle
+                   ^referent @100324)
+           
+           (<num> ^spelling |number|
+                   ^structure-type N
+                   ^number singular
+                   ^syntactic-referent-type CN
+                   ^object-feature number
+                   ^referent @100325)
+           
+           (<lett> ^spelling |letter|
+                   ^structure-type N
+                   ^number singular
+                   ^syntactic-referent-type CN
+                   #^object-feature letter
+                   ^referent @100327)
+           
+           (<action> ^spelling |action|
+                   ^structure-type N
+                   ^syntactic-referent-type V
+                   ^number singular
+                   ^object-feature handle
+                   ^referent @100328)
+           
+           (<relation> ^spelling |relation|
+                    ^structure-type N
+                    ^syntactic-referent-type P
+                    ^number singular
+                    ^referent @100330)
+           
+           (<relationship> ^spelling |relationship|
+                    ^structure-type N
+                    ^syntactic-referent-type P
+                    ^number singular
+                    ^referent @100330)
+                      
+           (<color> ^spelling |color|
+                    ^structure-type N
+                    ^syntactic-referent-type ADJ
+                    ^number singular
+                   ^referent @100001)
+
+		   (<weight> ^spelling |weight|
+                    ^structure-type N
+                    ^syntactic-referent-type ADJ
+                    ^number singular
+                   ^referent @100070)
+           
+            (<lastnamex> ^spelling |last-name|
+                     ^structure-type N
+                    ^syntactic-referent-type ADJ
+                    ^number singular   
+                     ^referent @100331)
+           
+		   (<volx> ^spelling |volume|
+                    ^structure-type N
+                    ^syntactic-referent-type ADJ
+                    ^number singular   
+                    ^referent @100332)
+
+		   (<values> ^spelling |values|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number plural
+                   ^referent @100336)                      
+           (<value> ^spelling |value|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100335)
+           (<diff> ^spelling |difference|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100333)
+		   
+		   (<temp> ^spelling |temperature|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100075)
+           
+           (<sum> ^spelling |sum|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100337)
+
+		   (<prod> ^spelling |product|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100339)
+     
+			(<columns> ^spelling |columns|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number plural
+                   ^referent @100341) 
+
+		   (<column> ^spelling |column|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100343)
+     
+		 (<rows> ^spelling |rows|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number plural
+                   ^referent @100342) 
+
+		   (<row> ^spelling |row|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100344)
+           
+		   (<pos> ^spelling |position|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100317)
+
+		   (<section> ^spelling |section|	   	   
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                   ^referent @100345)
+
+           (<location> ^spelling |location|
+                       ^structure-type N
+                       ^syntactic-referent-type DP
+                       ^number singular
+                       ^referent @100101)
+           
+           (<locations> ^spelling |locations|
+                       ^structure-type N
+                       ^syntactic-referent-type DP
+                       ^number plural
+                       ^referent @100348)  # NEW JEL
+           (<block> ^spelling |block|
+                       ^structure-type N
+                       ^number singular
+                       ^referent @100099)
+           (<blocks> ^spelling |blocks|
+                       ^structure-type N
+                       ^number plural
+                       ^referent @100349)  # NEW JEL
+           
+			(<solx> ^spelling |solution|
+                     ^structure-type N   
+                     ^number singular
+                     ^referent @100347)
+
+           (<shape> ^spelling |shape|
+                    ^structure-type N
+                    ^syntactic-referent-type N
+                    ^number singular
+                    ^referent @100012)
+           
+           (<size> ^spelling |size|
+                   ^structure-type N
+                   ^syntactic-referent-type ADJ
+                   ^number singular
+                   ^referent @100032)
+           
+           (<steps> ^spelling |steps|
+                     ^structure-type N
+                     ^syntactic-referent-type N   
+                     ^number plural                     
+                     ^object-feature handle
+                     ^referent @100350)
+
+           (<state> ^spelling |state|
+                     ^structure-type N   
+                     ^number singular      
+                     ^referent @100510)
+           
+           (<mission> ^spelling |missionaries|
+                     ^structure-type N   
+                     ^multiple true
+                     ^number plural     
+                     ^referent @100351)
+           
+           (<cans> ^spelling |cannibals|
+                     ^structure-type N   
+                     ^number plural      
+                     ^referent @100352)
+       
+                 
+           (<suit> ^spelling |suit|
+                     ^structure-type N   
+                     ^number singular      
+                     ^referent @100346)
+           
+
+		    (<peg> ^spelling |peg|
+	       			^structure-type N 
+	           		^number singular
+	                   ^referent @100289)
+   
+	    	(<knight> ^spelling |knight|
+		       			^structure-type N 
+		           		^number singular
+		                 ^referent @100290) 
+			(<person> ^spelling |person|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100100) 
+			(<agent> ^spelling |agent|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100291) 
+			(<actor> ^spelling |actor|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100292) 
+			(<manager> ^spelling |manager|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100293) 
+			(<piece> ^spelling |piece|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100294) 
+			(<frog> ^spelling |frog|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100295) 
+			(<toad> ^spelling |toad|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100296) 
+			(<grape> ^spelling |grape|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100297) 
+			(<grapefruit> ^spelling |grapefruit|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100298) 
+			(<goose> ^spelling |goose|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100299) 
+			(<bean> ^spelling |bean|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100300) 
+			(<fox> ^spelling |fox|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100301) 
+			(<passenger> ^spelling |passenger|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100302) 
+			(<line> ^spelling |line|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100303) 
+		    (<stack> ^spelling |stack|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100309)
+			(<group> ^spelling |group|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100304)
+			(<grouping> ^spelling |grouping|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100305)
+			(<rank> ^spelling |rank|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100306)
+			(<file> ^spelling |file|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100307)
+			(<region> ^spelling |region|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100308)
+		    (<sold> ^spelling |solution-depth|
+		       				^structure-type N 
+		           			^number singular
+		                    ^referent @100310)
+			#JK TODO double meaning problem in single sentence 
+			#(<col> ^spelling |column|
+		    #   				^structure-type N 
+		    #       			^number singular
+		    #                ^referent @column1) 
+
+
+#         row-constraints column-constraints section-constraints total-
+			(<passenger1> ^spelling |passenger|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100322) 
+			(<owner> ^spelling |owner|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100311) 
+			(<partner> ^spelling |partner|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100312) 
+			(<age> ^spelling |age|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100313)
+			(<score> ^spelling |score|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100314) 
+			(<husband> ^spelling |husband|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100315) 
+			(<wife> ^spelling |wife|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100316) 
+			#(<position> ^spelling |position|
+		    #   		^structure-type N 
+            # 		^syntactic-referent-type ADJ
+		    #       	^number singular
+		    #        ^referent @position) 
+			(<neighbor> ^spelling |neighbor|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100318) 
+			(<occupant> ^spelling |occupant|
+		       		^structure-type N 
+             		^syntactic-referent-type N
+		           	^number singular
+		            ^referent @100319) 
+			(<constraints> ^spelling |constraints|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100320) 
+			(<manager1> ^spelling |manager|
+		       		^structure-type N 
+             		^syntactic-referent-type ADJ
+		           	^number singular
+		            ^referent @100321)
+
+
+
+ #############################################
+           
+           
+                       
+           (<lights> ^spelling |lights|
+                    ^structure-type N
+                    ^number singular
+                    ^on-off-state-change true
+                    ^referent @100353)
+                         
+           (<light> ^spelling |light|
+                    ^structure-type N
+                    ^number singular
+                    ^on-off-state-change true
+                    ^referent @100353)
+
+}
+
+### Front, Middle, and Back Nouns
+
+smem --add {
+           (<middle> ^spelling |middle-noun|
+                    ^prior-word D
+                    ^current-word |middle|
+                    ^structure-type N
+                    ^consumes-prior-word false
+                    ^semantic-entity-type relation
+                    ^semantic-structure predicate
+                    ^number singular
+                    ^relation <middle-of1>)
+           (<middle-of1> ^handle middle-of1)
+                                
+           (<front> ^spelling |front-noun|
+                    ^prior-word P
+                    ^current-word |front|
+                    ^structure-type DP
+                    ^consumes-prior-word false
+                    ^semantic-entity-type relation
+                    ^semantic-structure predicate
+                    ^number singular
+                    ^relation <front-of1>)
+           (<front-of1> ^handle front-of1)
+                                    
+           (<back> ^spelling |back-noun|
+                    ^prior-word P
+                    ^current-word |back|
+                    ^structure-type DP
+                    ^consumes-prior-word false
+                    ^semantic-entity-type relation
+                    ^semantic-structure predicate
+                    ^number singular
+                    ^relation <back-of1>)      
+           (<back-of1> ^handle back-of1)            
+           
+}
+

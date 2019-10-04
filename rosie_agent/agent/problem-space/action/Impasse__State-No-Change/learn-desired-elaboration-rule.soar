@@ -1,0 +1,8 @@
+sp {task-state-no-change*propose*learn-desired-elaboration-rule
+   (state <s> ^name task-state-no-change
+             -^learning-task-utils-rule true
+             -^desired)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name learn-desired-elaboration-rule)
+}

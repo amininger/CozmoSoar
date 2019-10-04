@@ -1,0 +1,35 @@
+sp {push-procedural-subgoal*propose*store-goal
+   (state <s> ^name push-procedural-subgoal
+              ^added-subgoal <goal>
+             -^stored-subgoal true)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name store-goal)
+}
+
+sp {push-procedural-subgoal*apply*store-goal
+   (state <s> ^name push-procedural-subgoal
+              ^operator.name store-goal
+              ^added-subgoal <subgoal>
+              ^task-concept-network <tcn>
+              ^smem.command <cmd>)
+   (<tcn> ^goal <g>)
+   (<g> ^<sg-num> <subgoal>)
+   (<subgoal> ^predicates <preds>)
+-->
+   (<cmd> ^store <tcn>
+          ^store <g>
+          ^store <subgoal>
+          ^store <preds>)
+   (<s> ^stored-subgoal true)
+}
+
+sp {push-procedural-subgoal*apply*store-goal*subgoal*predicate
+   (state <s> ^name push-procedural-subgoal
+              ^operator.name store-goal
+              ^added-subgoal <subgoal>
+              ^smem.command <cmd>)
+   (<subgoal> ^predicates.{ <pred-num> << 1 2 3 4 5 >> } <pred>)
+-->
+   (<cmd> ^store <pred>)
+}

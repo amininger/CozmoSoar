@@ -1,0 +1,21 @@
+## task-operator - the action the goal is for
+sp {learn-goal-definition*elaborate*task-operator*from*top-state*task-stack
+   (state <s> ^name learn-goal-definition
+              ^top-state.task-stack.top.task-operator <op>)
+-->
+   (<s> ^task-operator <op>)
+}
+
+sp {learn-goal-definition*elaborate*reference-info*superstate
+   (state <s> ^name learn-goal-definition
+              ^superstate.superstate.purpose.parameters.reference-info <info>)
+-->
+   (<s> ^reference-info <info>)
+}
+
+sp {learn-goal-definition*elaborate*goal-structure*from*task-concept-network
+   (state <s> ^name learn-goal-definition
+              ^task-concept-network.goal <g>)
+-->
+   (<s> ^goal-structure <g>)
+}

@@ -1,0 +1,56 @@
+source color.soar
+
+source shape.soar
+
+source size.soar
+
+source name.soar
+
+source proper-name.soar
+
+source possessive.soar
+
+source weight.soar
+
+source temperature.soar
+
+source modifier.soar
+
+source concept.soar
+
+source category.soar
+
+source subcategory.soar
+
+source spatial-shape.soar
+
+source number.soar
+
+source actions.soar
+
+source concepts.soar
+
+source properties.soar
+
+source relations.soar
+
+source adjectives.soar
+
+source comparative-conjunctions.soar
+
+source constructions.soar
+
+source count-words.soar
+
+source nouns.soar
+
+source prepositions.soar
+
+source right-left-2.soar
+
+source verbs.soar
+
+source word-pairs.soar
+
+source proper-nouns.soar
+

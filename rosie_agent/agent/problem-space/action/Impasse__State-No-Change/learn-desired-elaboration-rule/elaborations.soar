@@ -1,0 +1,20 @@
+sp {learn-desired-elaboration-rule*elaborate*task-operator*from*superstate
+   (state <s> ^name learn-desired-elaboration-rule
+              ^superstate.task-operator <task-op>)
+-->
+   (<s> ^task-operator <task-op>)
+}
+
+sp {learn-desired-elaboration-rule*elaborate*smem-info
+   (state <s> ^name learn-desired-elaboration-rule
+              ^task-concept-network <tcn>
+              ^task-operator.current-subgoal <subgoal-handle>)
+   (<tcn> ^goal <goal>
+          ^procedural <proc>)
+   (<goal> ^<sg-num> <subgoal>)
+   (<subgoal> ^handle <subgoal-handle>)
+-->
+   (<s> ^goal-id <subgoal>)
+   (<s> ^procedural-id <proc>)
+}
+

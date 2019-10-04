@@ -1,0 +1,118 @@
+sp {top-state*world*predicates*elaborate*predicate
+   (state <s> ^superstate nil
+              ^world.predicates <preds>
+              ^perception-monitor.predicate-monitor.predicate-info <pred-info>)
+   (<pred-info> ^predicate-handle <pred-handle>)
+-->
+   (<preds> ^predicate <pred>)
+   (<pred> ^handle <pred-handle>)
+}
+
+sp {top-state*world*predicates*elaborate*predicate-monitor*object-test*relations
+   (state <s> ^superstate nil
+              ^world.objects.object <obj>
+              ^perception-monitor.predicate-monitor.predicate-info <pred-info>)
+   (<pred-info> ^smem-info.item-type relation)
+   (<obj> ^svs-obj <svs-obj>)
+-->
+   (<pred-info> ^object-test <test>)
+   (<test> ^object <obj>)
+}
+
+sp {top-state*world*predicates*elaborate*instance*from*predicate-monitor
+   (state <s> ^superstate nil
+              ^perception-monitor.predicate-monitor.predicate-info <pred-info>
+              ^world.predicates.predicate <pred>)
+   (<pred-info> ^predicate-handle <pred-handle>
+                ^object-test <test>)
+   (<test> ^object <obj1>
+           ^match <obj2>)
+   (<pred> ^handle <pred-handle>)
+#   (<obj1> ^predicates.arm-status not-grabbed)
+#   (<obj2> ^predicates.arm-status not-grabbed)
+-->
+   (<pred> ^instance <args>)
+   (<args> ^1 <obj1> ^2 <obj2>)
+}
+
+sp {top-state*world*predicates*elaborate*instance*using*linked*object*1
+   (state <s> ^superstate nil
+              ^world.predicates.predicate <pred>)
+   (<pred> ^instance <i>)
+   (<i> ^1 <obj1> ^2 <obj2>)
+   (<obj1> ^linked-to <link-obj1>)
+-->
+   (<pred> ^instance <i2>)
+   (<i2> ^1 <link-obj1> ^2 <obj2>)
+}
+
+sp {top-state*world*predicates*elaborate*instance*using*linked*object*2
+   (state <s> ^superstate nil
+              ^world.predicates.predicate <pred>)
+   (<pred> ^instance <i>)
+   (<i> ^1 <obj1> ^2 <obj2>)
+   (<obj2> ^linked-to <link-obj2>)
+-->
+   (<pred> ^instance <i2>)
+   (<i2> ^1 <obj1> ^2 <link-obj2>)
+}
+
+sp {top-state*world*predicates*elaborate*instance*using*linked*object*both
+   (state <s> ^superstate nil
+              ^world.predicates.predicate <pred>)
+   (<pred> ^instance <i>)
+   (<i> ^1 <obj1> ^2 <obj2>)
+   (<obj1> ^linked-to <link-obj1>)
+   (<obj2> ^linked-to <link-obj2>)
+-->
+   (<pred> ^instance <i2>)
+   (<i2> ^1 <link-obj1> ^2 <link-obj2>)
+}
+
+sp {top-state*world*predicates*elaborate*in1*current-location
+   (state <s> ^superstate nil
+              ^perception-monitor.object-monitor.object-info <obj-info>
+              ^world <w>)
+   (<obj-info> ^belief-obj
+               ^wm-obj <obj>)
+   (<obj> -^predicates.arm-status grabbed
+          -^categroy location)
+   (<w> ^robot.current-location <loc>
+        ^predicates.predicate <in-pred>)
+   (<in-pred> ^handle in1)
+-->
+   (<in-pred> ^instance <i>)
+   (<i> ^1 <obj> ^2 <loc>)
+}
+
+sp {top-state*world*predicates*elaborate*in*from*contains*info*in1*receptacle
+   (state <s> ^superstate nil
+              ^perception-monitor.object-monitor.object-info <obj-info>
+              ^world <w>)
+   (<obj-info> ^input-link-obj.contains <obj1-h>
+               ^wm-obj <obj2>)
+   (<obj2> ^predicates.receptacle receptacle)
+   (<w> ^objects.object <obj1>
+        ^predicates.predicate <in-pred>)
+   (<obj1> ^handle <obj1-h>)
+   (<in-pred> ^handle in1)
+-->
+   (<in-pred> ^instance <i>)
+   (<i> ^1 <obj1> ^2 <obj2>)
+}
+
+sp {top-state*world*predicates*elaborate*in*from*contains*info*on1*surface
+   (state <s> ^superstate nil
+              ^perception-monitor.object-monitor.object-info <obj-info>
+              ^world <w>)
+   (<obj-info> ^input-link-obj.contains <obj1-h>
+               ^wm-obj <obj2>)
+   (<obj2> ^predicates.receptacle surface)
+   (<w> ^objects.object <obj1>
+        ^predicates.predicate <on-pred>)
+   (<obj1> ^handle <obj1-h>)
+   (<on-pred> ^handle on1)
+-->
+   (<on-pred> ^instance <i>)
+   (<i> ^1 <obj1> ^2 <obj2>)
+}

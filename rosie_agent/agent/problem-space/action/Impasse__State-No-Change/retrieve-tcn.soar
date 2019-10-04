@@ -1,0 +1,15 @@
+## Do an smem query to lookup the smem info about the task
+sp {task-state-no-change*elaborate*smem-query*task*handle
+   (state <s> ^name task-state-no-change
+              ^task-operator.task-handle <task-handle>
+             -^task-concept-network)
+-->
+   (<s> ^smem-query <query>)
+   (<query> ^cue <cue>
+            ^link-to-ltm no
+            ^destination <s>
+            ^result-name task-concept-network
+            ^depth 10)
+   (<cue> ^handle <task-handle>)
+}
+

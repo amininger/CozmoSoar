@@ -1,0 +1,12 @@
+
+sp {op_find1*apply*pop-task-segment*scan
+   (state <s> ^name op_find1
+              ^operator <o>
+              ^current-task-segment <seg>
+              ^world.robot.current-location.handle <loch>)
+   (<o> ^name pop-task-segment
+        ^segment <scan-seg>)
+   (<scan-seg> ^task-handle scan1)
+-->
+   (<seg> ^completed-scan <loch>)
+}

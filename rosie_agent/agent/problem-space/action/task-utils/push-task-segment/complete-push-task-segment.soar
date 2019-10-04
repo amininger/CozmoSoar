@@ -1,0 +1,205 @@
+# once everything is done, push the task onto the stack
+
+sp {task-utils*push-task-segment*propose*complete-push-task-segment
+   (state <s> ^name push-task-segment)
+-->
+   (<s> ^operator <o> + <)
+   (<o> ^name complete-push-task-segment)
+}
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*add*start-of-execution*flag
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>)
+-->
+   (<seg> ^start-of-execution true)
+}
+
+# remove new-task-segment from task-stack
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*remove*new-task-segment*task-stack
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^task-stack <stack>)
+   (<stack> ^new-task-segment <seg>)
+-->
+   (<stack> ^new-task-segment <seg> -)
+}
+
+# remove new-task-segment from superstate
+sp {task-utils*push-task-segment*apply*complete-push-task-segmennt*remove*new-task-segmennt*superstate
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^superstate <ss>)
+   (<ss> ^problem-space.name action
+         ^new-task-segment <seg>)
+-->
+   (<ss> ^new-task-segment <seg> -)
+}
+
+# Mark status complete on superoperator
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*mark*status*complete*on*superoperator
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^superstate.operator <o>)
+-->
+   (<o> ^status complete)
+}
+
+# push the task on to the stack
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*push
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^task-stack <stack>
+              ^segment-to-push <seg>)
+   (<stack> ^top <top>)
+   (<top> ^next none)
+-->
+   (<stack> ^top <top> -
+            ^top <seg>)
+   (<seg> ^next none
+          ^prev <top>)
+   (<top> ^next none -
+          ^next <seg>)
+}
+
+# if the stack was empty, update the top and bottom 
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*push*empty
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^task-stack <stack>
+              ^segment-to-push <seg>)
+   (<stack> ^top none
+            ^bottom none)
+-->
+   (<stack> ^top none -
+            ^top <seg>
+            ^bottom none -
+            ^bottom <seg>)
+   (<seg> ^next none
+          ^prev none)
+}
+
+# Report to the output link that the task was started
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*report-to-output-link
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^agent-params.report-tasks-to-output-link true
+              ^segment-to-push <seg>
+              ^top-state.io.output-link <ol>)
+-->
+   (<ol> ^started-task.segment <seg>)
+}
+
+# Add any objects using the task to the task-stack
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*add*task-objects
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^merge-object-workspace.world-obj <obj>
+              ^task-stack.task-objects <objs>)
+-->
+  (<objs> ^object <obj>)
+}
+        
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*ask*remove*previous*answer
+   (state <s> ^name push-task-segment
+              ^operator.name complete-push-task-segment
+              ^segment-to-push.task-operator.task-handle ask1
+              ^top-state.world.objects.object <obj>)
+   (<obj> ^predicates <preds>)
+   (<preds> ^modifier1 answer1)
+-->
+   (<preds> ^modifier1 answer1 -)
+}
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*print*task*segment
+   (state <s> ^name push-task-segment
+              ^agent-params.print-new-task true
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>)
+   (<seg> ^task-operator <task-op>)
+-->
+   (write |Pushing a new task segment: | (crlf))
+   (write (cmd print <seg> -d 1)  (crlf))
+   (write |Action Operator: |  (crlf))
+   (write (cmd print <task-op> -d 5)  (crlf))
+}
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*print*task*1*obj
+   (state <s> ^name push-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>)
+   (<task-op> ^name <op-name>
+           ^<arg1-name> <arg1>
+          -^{ <arg2-name> <> <arg1-name> }.arg-type <t2>)
+   (<arg1> ^arg-type object ^id.handle <obj>)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | | <obj> | @| <time> (crlf))
+}
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*print*task*1*pred
+   (state <s> ^name push-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>)
+   (<task-op> ^name <op-name>
+           ^<arg1-name> <arg1>
+          -^{ <arg2-name> <> <arg1-name> }.arg-type <t2>)
+   (<arg1> ^arg-type partial-predicate ^{2}.handle <obj>)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | | <obj> | @| <time> (crlf))
+}
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*print*task*1*obj*1*pred
+   (state <s> ^name push-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>)
+   (<task-op> ^name <op-name>
+           ^<arg1-name> <arg1>
+           ^<arg2-name> <arg2>)
+   (<arg1> ^arg-type object ^id.handle <obj1>)
+   (<arg2> ^arg-type partial-predicate ^{2}.handle <obj2>)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | | <obj1> | | <obj2> | @| <time> (crlf))
+}
+
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*print*task*0*arg
+   (state <s> ^name push-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>)
+   (<task-op> ^name <op-name>
+             -^arg1 -^arg2)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | @| <time> (crlf))
+}
+        
+sp {task-utils*push-task-segment*apply*complete-push-task-segment*print*task*1*arg*coord
+   (state <s> ^name push-task-segment
+              ^agent-params.print-new-task-shorthand true
+              ^operator.name complete-push-task-segment
+              ^segment-to-push <seg>
+              ^io.input-link.time.milliseconds <time>)
+   (<seg> ^task-operator <task-op>)
+   (<task-op> ^name <op-name>
+              ^arg1 <arg1>)
+   (<arg1> ^arg-type coordinate
+           ^coord <c>)
+   (<c> ^x <x> ^y <y>)
+-->
+   (write (crlf) |!EXECUTE-TASK! | <op-name> | (| <x> |, | <y> |) @| <time> (crlf))
+}
+        
